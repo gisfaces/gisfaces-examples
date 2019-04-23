@@ -1,0 +1,74 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.gisfaces</groupId>
+	<artifactId>gisfaces-examples</artifactId>
+	<version>2.0.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<name>GISFaces Examples</name>
+	<description>Examples For GISFaces JSF Component</description>
+	<url>http://www.gisfaces.com</url>
+	<inceptionYear>2013</inceptionYear>
+	<organization>
+		<name>GISFaces</name>
+		<url>http://www.gisfaces.com</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<id>gisfaces</id>
+			<name>Chris Duncan</name>
+			<email>cduncan@gisfaces.com</email>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:https://github.com/gisfaces/gisfaces-examples.git</connection>
+		<developerConnection>scm:git:https://github.com/gisfaces/gisfaces-examples.git</developerConnection>
+		<url>https://github.com/gisfaces/gisfaces-examples</url>
+	</scm>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<failOnMissingWebXml>false</failOnMissingWebXml>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>6.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.gisfaces</groupId>
+			<artifactId>gisfaces</artifactId>
+			<version>2.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces.extensions</groupId>
+			<artifactId>primefaces-extensions</artifactId>
+			<version>7.0</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/java/</directory>
+			</resource>
+		</resources>
+	</build>
+
+</project>

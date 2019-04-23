@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:gis="http://gisfaces.com">
+
+<ui:composition template="/view/template/template.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="GISFaces - Map Service Metadata"></h:outputText>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+
+			<h:panelGrid columns="1" width="100%">
+				<p:panel id="panel1" header="Map Service Metadata Search" styleClass="ui-fluid">
+					<p:panelGrid columns="4" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-2,ui-grid-col-10,ui-grid-col-1,ui-grid-col-1">
+						<p:outputLabel for="service" value="Map Service Directory"></p:outputLabel>
+						<p:inputText id="service" value="#{serviceMetadataView.url}" required="true"></p:inputText>
+						<p:commandButton value="Search" actionListener="#{serviceMetadataView.doSearchButtonActionListener}" update="panel2 messages1"></p:commandButton>
+						<p:commandButton value="Reset" actionListener="#{serviceMetadataView.doResetButtonActionListener}" update="panel1 panel2 messages1" immediate="true"></p:commandButton>
+					</p:panelGrid>
+				</p:panel>
+
+				<p:outputPanel id="panel2">
+					<p:dataTable id="datatable1" value="#{serviceMetadataView.serviceDirectory.services}" var="service" rowExpandMode="single" rendered="#{serviceMetadataView.serviceDirectory != null}">
+						<f:facet name="header">
+							<h:outputText value="Service Metadata"></h:outputText>
+						</f:facet>
+						<p:column width="20">
+							<p:rowToggler></p:rowToggler>
+						</p:column>
+						<p:column width="200" headerText="Name">
+							<h:outputText value="#{service.name}"></h:outputText>
+						</p:column>
+						<p:column width="200" headerText="Type">
+							<h:outputText value="#{service.type}"></h:outputText>
+						</p:column>
+						<p:column headerText="Description">
+							<h:outputText escape="false" value="#{service.description}"></h:outputText>
+						</p:column>
+						<p:rowExpansion>
+							<p:dataTable value="#{service.layers}" var="layer" rowExpandMode="single">
+								<f:facet name="header">
+									<h:outputText value="Layers"></h:outputText>
+								</f:facet>
+								<p:column width="20">
+									<p:rowToggler></p:rowToggler>
+								</p:column>
+								<p:column headerText="ID">
+									<h:outputText value="#{layer.id}"></h:outputText>
+								</p:column>
+								<p:column headerText="Name">
+									<h:outputText value="#{layer.name}"></h:outputText>
+								</p:column>
+								<p:column headerText="Type">
+									<h:outputText value="#{layer.type}"></h:outputText>
+								</p:column>
+								<p:column headerText="Geometry Type">
+									<h:outputText value="#{layer.geometryType}"></h:outputText>
+								</p:column>
+								<p:rowExpansion>
+									<p:dataTable value="#{layer.fields}" var="field" rowExpandMode="single">
+										<f:facet name="header">
+											<h:outputText value="Fields"></h:outputText>
+										</f:facet>
+										<p:column headerText="Name">
+											<h:outputText value="#{field.name}"></h:outputText>
+										</p:column>
+										<p:column headerText="Alias">
+											<h:outputText value="#{field.alias}"></h:outputText>
+										</p:column>
+										<p:column headerText="Type">
+											<h:outputText value="#{field.type}"></h:outputText>
+										</p:column>
+										<p:column headerText="Length">
+											<h:outputText value="#{field.length}"></h:outputText>
+										</p:column>
+										<p:column headerText="Values">
+											<h:outputText value="#{field.values}"></h:outputText>
+										</p:column>
+									</p:dataTable>
+								</p:rowExpansion>
+							</p:dataTable>
+						</p:rowExpansion>
+						<f:facet name="footer">
+							<h:outputText value=""></h:outputText>
+						</f:facet>
+					</p:dataTable>
+				</p:outputPanel>
+
+				<p:messages id="messages1" showSummary="true" showDetail="true" closable="true"></p:messages>
+			</h:panelGrid>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+</html>

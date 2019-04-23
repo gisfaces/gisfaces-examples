@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:gis="http://gisfaces.com">
+
+<ui:composition template="/view/template/template.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="GISFaces - CSV Layer"></h:outputText>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form style="height:100%;">
+
+			<p:growl id="growl1" showSummary="true" showDetail="true" keepAlive="true"></p:growl>
+
+			<pe:layoutPane position="center">
+				<f:facet name="header">
+					<h:outputText value="CSV Layer"></h:outputText>
+				</f:facet>
+
+				<h:panelGroup id="panel1" layout="block" styleClass="gisfaces-map-panel"></h:panelGroup>
+
+				<gis:map panel="panel1" basemap="#{csvLayerView.basemap}" latitude="#{csvLayerView.latitude}" longitude="#{csvLayerView.longitude}" zoom="#{csvLayerView.zoom}" model="#{csvLayerView.model}">
+					<f:ajax event="basemap" listener="#{csvLayerView.doMapBasemapListener}" render="growl1"></f:ajax>
+					<f:ajax event="click" listener="#{csvLayerView.doMapClickListener}" render="growl1"></f:ajax>
+					<f:ajax event="extent" listener="#{csvLayerView.doMapExtentListener}" render="growl1"></f:ajax>
+					<f:ajax event="select" listener="#{csvLayerView.doMapSelectListener}" render="growl1"></f:ajax>
+				</gis:map>
+			</pe:layoutPane>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+</html>

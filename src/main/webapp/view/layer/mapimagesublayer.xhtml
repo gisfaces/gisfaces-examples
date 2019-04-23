@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:gis="http://gisfaces.com">
+
+<ui:composition template="/view/template/template.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="GISFaces - Map Image Sub Layer"></h:outputText>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<p:growl id="growl1" showSummary="true" showDetail="true" keepAlive="true"></p:growl>
+
+		<pe:layoutPane position="west" size="300" closable="true" resizable="false">
+			<f:facet name="header">
+				<h:outputText value="Control Panel"></h:outputText>
+			</f:facet>
+			<h:form id="westForm">
+				<p:panel header="Layers" styleClass="containerPanel" toggleable="true">
+					<p:panel header="States" styleClass="containerPanel">
+						<h:panelGrid columns="2">
+							<p:toggleSwitch value="#{mapImageSubLayerView.states.visible}">
+								<f:ajax render=":mapForm:map1 statesTextarea"></f:ajax>
+							</p:toggleSwitch>
+							<h:outputText styleClass="bold" value="Visibility"></h:outputText>
+						</h:panelGrid>
+						<h:outputText styleClass="bold" value="Definition Expression"></h:outputText>
+						<p:inputTextarea id="statesTextarea" style="width:95%;" value="#{mapImageSubLayerView.states.definitionExpression}" disabled="#{not mapImageSubLayerView.states.visible}">
+							<f:ajax render=":mapForm:map1 statesTextarea"></f:ajax>
+						</p:inputTextarea>
+					</p:panel>
+					<p:panel header="Counties" styleClass="containerPanel">
+						<h:panelGrid columns="2">
+							<p:toggleSwitch value="#{mapImageSubLayerView.counties.visible}">
+								<f:ajax render=":mapForm:map1 countiesTextarea"></f:ajax>
+							</p:toggleSwitch>
+							<h:outputText styleClass="bold" value="Visibility"></h:outputText>
+						</h:panelGrid>
+						<h:outputText styleClass="bold" value="Definition Expression"></h:outputText>
+						<p:inputTextarea id="countiesTextarea" style="width:95%;" value="#{mapImageSubLayerView.counties.definitionExpression}" disabled="mapImageSubLayerView.counties.visible}">
+							<f:ajax render=":mapForm:map1 statesTextarea"></f:ajax>
+						</p:inputTextarea>
+					</p:panel>
+					<h:panelGrid columns="1" width="100%" styleClass="center">
+						<p:commandButton value="Update" update=":mapForm:map1"></p:commandButton>
+					</h:panelGrid>
+				</p:panel>
+			</h:form>
+		</pe:layoutPane>
+
+		<pe:layoutPane position="center">
+			<f:facet name="header">
+				<h:outputText value="Map Image Sub Layer"></h:outputText>
+			</f:facet>
+			<h:form id="centerForm" style="height:100%;">
+				<h:panelGroup id="panel1" layout="block" styleClass="gisfaces-map-panel"></h:panelGroup>
+			</h:form>
+		</pe:layoutPane>
+
+		<h:form id="mapForm">
+			<gis:map id="map1" panel=":centerForm:panel1" basemap="#{mapImageSubLayerView.basemap}" latitude="#{mapImageSubLayerView.latitude}" longitude="#{mapImageSubLayerView.longitude}" zoom="#{mapImageSubLayerView.zoom}" model="#{mapImageSubLayerView.model}">
+				<f:ajax event="basemap" listener="#{mapImageSubLayerView.doMapBasemapListener}" render="growl1"></f:ajax>
+				<f:ajax event="click" listener="#{mapImageSubLayerView.doMapClickListener}" render="growl1"></f:ajax>
+				<f:ajax event="extent" listener="#{mapImageSubLayerView.doMapExtentListener}" render="growl1"></f:ajax>
+				<f:ajax event="select" listener="#{mapImageSubLayerView.doMapSelectListener}" render="growl1"></f:ajax>
+			</gis:map>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:gis="http://gisfaces.com">
+
+<ui:composition template="/view/template/template.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="GISFaces - Railroad Map"></h:outputText>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<p:growl id="growl1" showSummary="true" showDetail="true" keepAlive="true"></p:growl>
+
+		<pe:layoutPane position="west" size="300" closable="true" resizable="false">
+			<f:facet name="header">
+				<h:outputText value="Layers"></h:outputText>
+			</f:facet>
+			<h:form id="westForm">
+				<p:panel header="Railroad" styleClass="containerPanel" toggleable="true">
+					<h:panelGrid columns="2">
+						<p:toggleSwitch value="#{railroadView.rail.visible}">
+							<f:ajax render=":mapForm:map1"></f:ajax>
+						</p:toggleSwitch>
+						<h:outputText styleClass="bold" value="Rail Main Line"></h:outputText>
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<p:toggleSwitch value="#{railroadView.yards.visible}">
+							<f:ajax render=":mapForm:map1"></f:ajax>
+						</p:toggleSwitch>
+						<h:outputText styleClass="bold" value="Rail Yards"></h:outputText>
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<p:toggleSwitch value="#{railroadView.passenger.visible}">
+							<f:ajax render=":mapForm:map1"></f:ajax>
+						</p:toggleSwitch>
+						<h:outputText styleClass="bold" value="Passenger Rail"></h:outputText>
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<p:toggleSwitch value="#{railroadView.freight.visible}">
+							<f:ajax render=":mapForm:map1"></f:ajax>
+						</p:toggleSwitch>
+						<h:outputText styleClass="bold" value="Freight Stations"></h:outputText>
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<p:toggleSwitch value="#{railroadView.bridges.visible}">
+							<f:ajax render=":mapForm:map1"></f:ajax>
+						</p:toggleSwitch>
+						<h:outputText styleClass="bold" value="Safety Bridges"></h:outputText>
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<p:toggleSwitch value="#{railroadView.crossings.visible}">
+							<f:ajax render=":mapForm:map1"></f:ajax>
+						</p:toggleSwitch>
+						<h:outputText styleClass="bold" value="Rail Crossings"></h:outputText>
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<p:toggleSwitch value="#{railroadView.mileposts.visible}">
+							<f:ajax render=":mapForm:map1"></f:ajax>
+						</p:toggleSwitch>
+						<h:outputText styleClass="bold" value="Rail Mileposts"></h:outputText>
+					</h:panelGrid>
+				</p:panel>
+				<p:panel header="Weather" styleClass="containerPanel" toggleable="true">
+					<h:panelGrid columns="2">
+						<p:toggleSwitch  value="#{railroadView.warnings.visible}">
+							<f:ajax render=":mapForm:map1 warningsSlider"></f:ajax>
+						</p:toggleSwitch >
+						<h:outputText styleClass="bold" value="Weather Warnings"></h:outputText>
+					</h:panelGrid>
+					<h:panelGrid width="100%" title="Opacity">
+						<p:slider id="warningsSlider" for="warningsOpacity" minValue="0.0" maxValue="1.0" step="0.01" disabled="#{not railroadView.warnings.visible}">
+							<p:ajax event="slideEnd" process="warningsOpacity" update=":mapForm:map1"></p:ajax>
+						</p:slider>
+						<h:inputHidden id="warningsOpacity" value="#{railroadView.warnings.opacity}"></h:inputHidden>
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<p:toggleSwitch value="#{railroadView.radar.visible}">
+							<f:ajax render=":mapForm:map1 radarSlider"></f:ajax>
+						</p:toggleSwitch >
+						<h:outputText styleClass="bold" value="Doppler Radar"></h:outputText>
+					</h:panelGrid>
+					<h:panelGrid width="100%" title="Opacity">
+						<p:slider id="radarSlider" for="radarOpacity" minValue="0.0" maxValue="1.0" step="0.01" disabled="#{not railroadView.radar.visible}">
+							<p:ajax event="slideEnd" process="radarOpacity" update=":mapForm:map1"></p:ajax>
+						</p:slider>
+						<h:inputHidden id="radarOpacity" value="#{railroadView.radar.opacity}"></h:inputHidden>
+					</h:panelGrid>
+				</p:panel>
+			</h:form>
+		</pe:layoutPane>
+
+		<pe:layoutPane position="center">
+			<f:facet name="header">
+				<h:outputText value="Railroad Map"></h:outputText>
+			</f:facet>
+			<h:form id="centerForm" style="height:100%;">
+				<h:panelGroup id="panel1" layout="block" styleClass="gisfaces-map-panel"></h:panelGroup>
+			</h:form>
+		</pe:layoutPane>
+
+		<h:form id="mapForm">
+			<gis:map id="map1" panel=":centerForm:panel1" basemap="#{railroadView.basemap}" latitude="#{railroadView.latitude}" longitude="#{railroadView.longitude}" zoom="#{railroadView.zoom}" model="#{railroadView.model}">
+				<f:ajax event="basemap" listener="#{railroadView.doMapBasemapListener}" render="growl1"></f:ajax>
+				<f:ajax event="click" listener="#{railroadView.doMapClickListener}" render="growl1"></f:ajax>
+				<f:ajax event="extent" listener="#{railroadView.doMapExtentListener}" render="growl1"></f:ajax>
+				<f:ajax event="select" listener="#{railroadView.doMapSelectListener}" render="growl1"></f:ajax>
+			</gis:map>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

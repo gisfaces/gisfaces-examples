@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:gis="http://gisfaces.com">
+
+<ui:composition template="/view/template/template.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="GISFaces - Symbol Component"></h:outputText>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+
+			<p:panelGrid columns="4" style="width:100%;">
+				<f:facet name="header">
+					<h:outputText styleClass="bold" value="Map Symbol Component &lt;gis:symbol&gt;"></h:outputText>
+				</f:facet>
+
+				<h:outputText styleClass="bold" value="Symbol"></h:outputText>
+				<h:outputText styleClass="bold" value="Layer"></h:outputText>
+				<h:outputText styleClass="bold" value="Label"></h:outputText>
+				<h:outputText styleClass="bold" value="Service"></h:outputText>
+
+				<gis:symbol url="https://idpgis.ncep.noaa.gov/arcgis/rest/services/NWS_Forecasts_Guidance_Warnings/watch_warn_adv/MapServer" layer="0" label="Tornado Warning"></gis:symbol>
+				<h:outputText value="0"></h:outputText>
+				<h:outputText value="Tornado Warning"></h:outputText>
+				<h:outputText value="https://idpgis.ncep.noaa.gov/arcgis/rest/services/NWS_Forecasts_Guidance_Warnings/watch_warn_adv/MapServer"></h:outputText>
+
+				<gis:symbol url="https://idpgis.ncep.noaa.gov/arcgis/rest/services/NWS_Forecasts_Guidance_Warnings/watch_warn_adv/MapServer" layer="1" label="Tsunami Warning"></gis:symbol>
+				<h:outputText value="1"></h:outputText>
+				<h:outputText value="Tsunami Warning"></h:outputText>
+				<h:outputText value="https://idpgis.ncep.noaa.gov/arcgis/rest/services/NWS_Forecasts_Guidance_Warnings/watch_warn_adv/MapServer"></h:outputText>
+			</p:panelGrid>
+
+			<p:messages showSummary="true" showDetail="true" closable="true"></p:messages>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+</html>

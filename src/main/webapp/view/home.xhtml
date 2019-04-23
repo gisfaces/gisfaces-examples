@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:gis="http://gisfaces.com">
+
+<ui:composition template="/view/template/template.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="GISFaces - Enterprise GIS Component for JSF"></h:outputText>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:panelGroup layout="block" style="text-align:center; padding-top:25px;">
+			<h:graphicImage value="/resources/images/gisfaces.png"></h:graphicImage>
+		</h:panelGroup>
+
+		<h:panelGroup layout="block" style="text-align:center; padding:25px 100px 0px 100px;">
+			<a class="link" target="_blank" href="https://www.gisfaces.com">GISFaces</a>™ is an Enterprise GIS mapping component for <a class="link" target="_blank" href="http://www.javaserverfaces.org">JavaServer Faces</a> (JSF).
+			The underlying GIS mapping engine used is the <a class="link" target="_blank" href="https://www.esri.com">ESRI</a>® <a class="link" target="_blank" href="https://developers.arcgis.com/javascript/">ArcGIS API For JavaScript</a>.
+			Any ArcGIS layer or raw data, local or online, can be used in the maps you build.
+			All of these example maps are built with publicly available layers and data.
+			Best of all, no prior GIS programmer or analyst experience is necessary to start integrating GIS maps into your enterprise applications.
+		</h:panelGroup>
+
+		<h:panelGroup layout="block" style="text-align:center; padding:25px 100px 25px 100px;">
+			2D and 3D map views are available.
+			Map layer types supported include CSV, Feature, GeoJSON, GeoRSS, Graphics, Imagery, Integrated Mesh, KML, Map Image, Point Cloud, ArcGIS Portal, Scene, Stream, Tile, Vector Tile, and WMS.
+			All layers automatically display the feature attribute table on selection.
+			Java event handlers for map interaction include basemap selection, map click, map extent, feature selection, geo-location, graphic editing.
+			The map widgets displayed are search, zoom in/out, pan/orientation, comapss, basemap, layer list, legend, geo-location tracking, full screen, 2d/3d toggle, and coordinate transformations.
+		</h:panelGroup>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:gis="http://gisfaces.com">
+
+<ui:composition template="/view/template/template.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="GISFaces - SVG Component"></h:outputText>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+
+			<p:panelGrid columns="2">
+
+				<f:facet name="header">
+					<h:outputText styleClass="bold" value="SVG Component &lt;gis:svg&gt;"></h:outputText>
+				</f:facet>
+
+				<h:outputText styleClass="bold" value="Graphic"></h:outputText>
+				<h:outputText styleClass="bold" value="Path"></h:outputText>
+
+				<gis:svg title="Arrow" path="M 0,20 6,0 12,20 6,16 z" width="16" height="24" fillColor="green" fillOpacity="0.5" strokeColor="black" strokeOpacity="0.5" strokeWidth="1.0"></gis:svg>
+				<h:outputText value="M 0,20 6,0 12,20 6,16 z"></h:outputText>
+
+			</p:panelGrid>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+</html>

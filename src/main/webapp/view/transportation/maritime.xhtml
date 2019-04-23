@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:gis="http://gisfaces.com">
+
+<ui:composition template="/view/template/template.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="GISFaces - Maritime Map"></h:outputText>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<p:growl id="growl1" showSummary="true" showDetail="true" keepAlive="true"></p:growl>
+
+		<pe:layoutPane position="west" size="300" closable="true" resizable="false">
+			<f:facet name="header">
+				<h:outputText value="Layers"></h:outputText>
+			</f:facet>
+			<h:form id="westForm">
+				<p:panel header="Maritime" styleClass="containerPanel" toggleable="true">
+					<h:panelGrid columns="2">
+						<p:toggleSwitch value="#{maritimeView.waterways.visible}">
+							<f:ajax render=":mapForm:map1"></f:ajax>
+						</p:toggleSwitch>
+						<h:outputText styleClass="bold" value="Waterways"></h:outputText>
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<p:toggleSwitch value="#{maritimeView.ports.visible}">
+							<f:ajax render=":mapForm:map1"></f:ajax>
+						</p:toggleSwitch>
+						<h:outputText styleClass="bold" value="Ports"></h:outputText>
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<p:toggleSwitch value="#{maritimeView.locks.visible}">
+							<f:ajax render=":mapForm:map1"></f:ajax>
+						</p:toggleSwitch>
+						<h:outputText styleClass="bold" value="Locks"></h:outputText>
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<p:toggleSwitch value="#{maritimeView.dams.visible}">
+							<f:ajax render=":mapForm:map1"></f:ajax>
+						</p:toggleSwitch>
+						<h:outputText styleClass="bold" value="Dams"></h:outputText>
+					</h:panelGrid>
+				</p:panel>
+				<p:panel header="Weather" styleClass="containerPanel" toggleable="true">
+					<h:panelGrid columns="2">
+						<p:toggleSwitch  value="#{maritimeView.warnings.visible}">
+							<f:ajax render=":mapForm:map1 warningsSlider"></f:ajax>
+						</p:toggleSwitch >
+						<h:outputText styleClass="bold" value="Weather Warnings"></h:outputText>
+					</h:panelGrid>
+					<h:panelGrid width="100%" title="Opacity">
+						<p:slider id="warningsSlider" for="warningsOpacity" minValue="0.0" maxValue="1.0" step="0.01" disabled="#{not maritimeView.warnings.visible}">
+							<p:ajax event="slideEnd" process="warningsOpacity" update=":mapForm:map1"></p:ajax>
+						</p:slider>
+						<h:inputHidden id="warningsOpacity" value="#{maritimeView.warnings.opacity}"></h:inputHidden>
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<p:toggleSwitch value="#{maritimeView.radar.visible}">
+							<f:ajax render=":mapForm:map1 radarSlider"></f:ajax>
+						</p:toggleSwitch >
+						<h:outputText styleClass="bold" value="Doppler Radar"></h:outputText>
+					</h:panelGrid>
+					<h:panelGrid width="100%" title="Opacity">
+						<p:slider id="radarSlider" for="radarOpacity" minValue="0.0" maxValue="1.0" step="0.01" disabled="#{not maritimeView.radar.visible}">
+							<p:ajax event="slideEnd" process="radarOpacity" update=":mapForm:map1"></p:ajax>
+						</p:slider>
+						<h:inputHidden id="radarOpacity" value="#{maritimeView.radar.opacity}"></h:inputHidden>
+					</h:panelGrid>
+				</p:panel>
+			</h:form>
+		</pe:layoutPane>
+
+		<pe:layoutPane position="center">
+			<f:facet name="header">
+				<h:outputText value="Maritime Map"></h:outputText>
+			</f:facet>
+			<h:form id="centerForm" style="height:100%;">
+				<h:panelGroup id="panel1" layout="block" styleClass="gisfaces-map-panel"></h:panelGroup>
+			</h:form>
+		</pe:layoutPane>
+
+		<h:form id="mapForm">
+			<gis:map id="map1" panel=":centerForm:panel1" basemap="#{maritimeView.basemap}" latitude="#{maritimeView.latitude}" longitude="#{maritimeView.longitude}" zoom="#{maritimeView.zoom}" model="#{maritimeView.model}">
+				<f:ajax event="basemap" listener="#{maritimeView.doMapBasemapListener}" render="growl1"></f:ajax>
+				<f:ajax event="click" listener="#{maritimeView.doMapClickListener}" render="growl1"></f:ajax>
+				<f:ajax event="extent" listener="#{maritimeView.doMapExtentListener}" render="growl1"></f:ajax>
+				<f:ajax event="select" listener="#{maritimeView.doMapSelectListener}" render="growl1"></f:ajax>
+			</gis:map>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

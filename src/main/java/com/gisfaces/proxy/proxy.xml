@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+ESRI ArcGIS API for Javascript proxy configuration file for use with GISFaces.
+
+This file must be in the applications classpath at "com/gisfaces/proxy/proxy.xml".
+
+Test that the proxy is installed and available:
+http://[yourmachine]:8080/[yourcontext]/proxy/proxy.jsp?ping
+
+Test that the proxy is able to forward requests directly in the browser using:
+http://[yourmachine]:8080/[yourcontext]/proxy/proxy.jsp?http://services.arcgisonline.com/ArcGIS/rest/services/?f=pjson
+
+See https://github.com/Esri/resource-proxy for more information.
+-->
+
+<ProxyConfig allowedReferers="*" logFile="gisfaces-proxy.log" logLevel="INFO" mustMatch="false">
+	<serverUrls>
+	</serverUrls>
+</ProxyConfig>

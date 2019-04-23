@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<h:head>
+	<title>
+		<ui:insert name="title">GISFaces Examples</ui:insert>
+	</title>
+</h:head>
+
+<h:body>
+
+	<h:outputStylesheet library="css" name="examples.css"></h:outputStylesheet>
+
+	<pe:layout>
+
+		<pe:layoutPane position="north" closable="false" resizable="false" styleClassContent="template-north">
+			<h:panelGrid width="100%" columns="2" columnClasses=",maxWidth">
+				<h:panelGroup>
+					<ui:insert name="header">
+						<ui:include src="/view/template/header.xhtml"/>
+					</ui:insert>
+				</h:panelGroup>
+				<h:panelGroup>
+					<ui:insert name="menu">
+						<ui:include src="/view/template/menu.xhtml"/>
+					</ui:insert>
+				</h:panelGroup>
+			</h:panelGrid>
+		</pe:layoutPane>
+
+		<pe:layoutPane position="center">
+			<ui:insert name="content"></ui:insert>
+		</pe:layoutPane>
+
+		<pe:layoutPane position="south" closable="false" resizable="false">
+			<h:outputText value="#{templateView.copyright}" styleClass="left"></h:outputText>
+			<h:outputText value="#{templateView.version}" styleClass="right"></h:outputText>
+		</pe:layoutPane>
+
+	</pe:layout>
+
+</h:body>
+
+</html>

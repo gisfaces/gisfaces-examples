@@ -1,0 +1,62 @@
+@charset "utf-8";
+
+body {
+	padding: 5px;
+	background-color: #FFFFFF;
+}
+
+body, input, select, textarea, button, .ui-widget, .ui-widget input,
+.ui-widget select, .ui-widget textarea, .ui-widget button,
+.ui-widget-header, .ui-widget-content, .ui-widget-header .ui-widget-header,
+.ui-widget-content .ui-widget-content, .ui-menuitem-text,
+.esri-widget, .esri-basemap-gallery__item-title {
+	color: rgb(79, 79, 79);
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+}
+
+.pe-layout-pane-header {
+	border: none !important;
+}
+
+.ui-layout-resizer {
+	background: #FFFFFF;
+}
+
+.template-north {
+	overflow: visible !important;
+	z-index: 999 !important;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.center {
+	text-align: center;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.maxWidth {
+	width: 100%;
+}
+
+.maxHeight {
+	height: 100%;
+}
+
+.link:link, .link:visited, .link:hover, .link:active {
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.containerPanel {
+	margin-bottom: 5px;
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+
+<h:body>
+	<h:form>
+
+		<p:menubar>
+			<p:menuitem value="Home" outcome="/view/home.xhtml"></p:menuitem>
+			<p:submenu label="Map">
+				<p:menuitem value="Simple Map" outcome="/view/map/simple.xhtml"></p:menuitem>
+				<p:menuitem value="Map Events" outcome="/view/map/events.xhtml"></p:menuitem>
+				<p:menuitem value="Map Themes" outcome="/view/map/themes.xhtml"></p:menuitem>
+				<p:menuitem value="ArcGIS WebMap" outcome="/view/map/webmap.xhtml"></p:menuitem>
+			</p:submenu>
+			<p:submenu label="Layers">
+				<p:submenu label="ArcGIS Hosted">
+					<p:menuitem value="Feature Layer" outcome="/view/layer/feature.xhtml"></p:menuitem>
+					<p:menuitem value="Imagery Layer" outcome="/view/layer/imagery.xhtml"></p:menuitem>
+					<p:menuitem value="Integrated Mesh Layer" outcome="/view/layer/integratedmesh.xhtml"></p:menuitem>
+					<p:menuitem value="Map Image Layer" outcome="/view/layer/mapimage.xhtml"></p:menuitem>
+					<p:menuitem value="Map Image Sub Layer" outcome="/view/layer/mapimagesublayer.xhtml"></p:menuitem>
+					<p:menuitem value="Point Cloud Layer" outcome="/view/layer/pointcloud.xhtml"></p:menuitem>
+					<p:menuitem value="Portal Layer" outcome="/view/layer/portal.xhtml"></p:menuitem>
+					<p:menuitem value="Scene Layer" outcome="/view/layer/scene.xhtml"></p:menuitem>
+					<p:menuitem value="Stream Layer" outcome="/view/layer/stream.xhtml"></p:menuitem>
+					<p:menuitem value="Tile Layer" outcome="/view/layer/tile.xhtml"></p:menuitem>
+					<p:menuitem value="Vector Tile Layer" outcome="/view/layer/vectortile.xhtml"></p:menuitem>
+				</p:submenu>
+				<p:submenu label="Open Source">
+					<p:menuitem value="GeoJSON Layer" outcome="/view/layer/geojson.xhtml"></p:menuitem>
+					<p:menuitem value="GeoRSS Layer" outcome="/view/layer/georss.xhtml"></p:menuitem>
+					<p:menuitem value="KML Layer" outcome="/view/layer/kml.xhtml"></p:menuitem>
+					<p:menuitem value="WMS Layer" outcome="/view/layer/wms.xhtml"></p:menuitem>
+				</p:submenu>
+				<p:submenu label="Text Data">
+					<p:menuitem value="CSV Layer" outcome="/view/layer/csv.xhtml"></p:menuitem>
+					<p:menuitem value="Graphics Layer" outcome="/view/layer/graphics.xhtml"></p:menuitem>
+				</p:submenu>
+			</p:submenu>
+			<p:submenu label="Transportation">
+				<p:menuitem value="Aeronautical Map" outcome="/view/transportation/aeronautical.xhtml"></p:menuitem>
+				<p:menuitem value="Maritime Map" outcome="/view/transportation/maritime.xhtml"></p:menuitem>
+				<p:menuitem value="Railroad Map" outcome="/view/transportation/railroad.xhtml"></p:menuitem>
+			</p:submenu>
+			<p:submenu label="Edit">
+				<p:menuitem value="Graphics Layer" outcome="/view/edit/graphics.xhtml"></p:menuitem>
+			</p:submenu>
+			<p:submenu label="Components">
+				<p:menuitem value="Map" outcome="/view/component/map.xhtml"></p:menuitem>
+				<p:menuitem value="Map Symbol" outcome="/view/component/symbol.xhtml"></p:menuitem>
+				<p:menuitem value="SVG" outcome="/view/component/svg.xhtml"></p:menuitem>
+			</p:submenu>
+			<p:submenu label="Serivces">
+				<p:menuitem value="Service Metadata" outcome="/view/service/metadata.xhtml"></p:menuitem>
+			</p:submenu>
+			<p:submenu label="About">
+				<p:menuitem value="Website" url="http://www.gisfaces.com" target="_blank"></p:menuitem>
+				<p:menuitem value="News" url="https://www.gisfaces.com/news/" target="_blank"></p:menuitem>
+				<p:menuitem value="Source" url="https://github.com/gisfaces" target="_blank"></p:menuitem>
+				<p:menuitem value="Legacy Examples" url="http://examples.gisfaces.com" target="_blank"></p:menuitem>
+			</p:submenu>
+		</p:menubar>
+
+	</h:form>
+</h:body>
+
+</html>
