@@ -23,33 +23,51 @@
 				<h:outputText value="Control Panel"></h:outputText>
 			</f:facet>
 			<h:form id="westForm">
-				<p:panel header="Layers" styleClass="containerPanel" toggleable="true">
-					<p:panel header="States" styleClass="containerPanel">
-						<h:panelGrid columns="2">
-							<p:toggleSwitch value="#{mapImageSubLayerView.states.visible}">
-								<f:ajax render=":mapForm:map1 statesTextarea"></f:ajax>
-							</p:toggleSwitch>
+				<p:panel header="Layers" styleClass="containerPanel">
+					<p:panel header="States" styleClass="containerPanel" toggleable="true">
+						<h:panelGrid columns="3" width="100%">
 							<h:outputText styleClass="bold" value="Visibility"></h:outputText>
+							<h:outputText styleClass="bold" value="Color"></h:outputText>
+							<h:outputText styleClass="bold" value="Opacity"></h:outputText>
+							<p:toggleSwitch value="#{mapImageSubLayerView.states.visible}">
+								<f:ajax render=":mapForm:map1 statesSlider statesTextarea"></f:ajax>
+							</p:toggleSwitch>
+							<p:colorPicker value="#{mapImageSubLayerView.stateColor}"></p:colorPicker>
+							<h:panelGrid width="100%">
+								<p:slider id="statesSlider" for="statesOpacity" minValue="0.0" maxValue="1.0" step="0.01" disabled="#{not mapImageSubLayerView.states.visible}">
+									<p:ajax event="slideEnd" process="statesOpacity" update=":mapForm:map1"></p:ajax>
+								</p:slider>
+								<h:inputHidden id="statesOpacity" value="#{mapImageSubLayerView.states.opacity}"></h:inputHidden>
+							</h:panelGrid>
 						</h:panelGrid>
 						<h:outputText styleClass="bold" value="Definition Expression"></h:outputText>
 						<p:inputTextarea id="statesTextarea" style="width:95%;" value="#{mapImageSubLayerView.states.definitionExpression}" disabled="#{not mapImageSubLayerView.states.visible}">
 							<f:ajax render=":mapForm:map1 statesTextarea"></f:ajax>
 						</p:inputTextarea>
 					</p:panel>
-					<p:panel header="Counties" styleClass="containerPanel">
-						<h:panelGrid columns="2">
-							<p:toggleSwitch value="#{mapImageSubLayerView.counties.visible}">
-								<f:ajax render=":mapForm:map1 countiesTextarea"></f:ajax>
-							</p:toggleSwitch>
+					<p:panel header="Counties" styleClass="containerPanel" toggleable="true">
+						<h:panelGrid columns="3" width="100%">
 							<h:outputText styleClass="bold" value="Visibility"></h:outputText>
+							<h:outputText styleClass="bold" value="Color"></h:outputText>
+							<h:outputText styleClass="bold" value="Opacity"></h:outputText>
+							<p:toggleSwitch value="#{mapImageSubLayerView.counties.visible}">
+								<f:ajax render=":mapForm:map1 countiesSlider countiesTextarea"></f:ajax>
+							</p:toggleSwitch>
+							<p:colorPicker value="#{mapImageSubLayerView.countyColor}"></p:colorPicker>
+							<h:panelGrid width="100%">
+								<p:slider id="countiesSlider" for="countiesOpacity" minValue="0.0" maxValue="1.0" step="0.01" disabled="#{not mapImageSubLayerView.counties.visible}">
+									<p:ajax event="slideEnd" process="countiesOpacity" update=":mapForm:map1"></p:ajax>
+								</p:slider>
+								<h:inputHidden id="countiesOpacity" value="#{mapImageSubLayerView.counties.opacity}"></h:inputHidden>
+							</h:panelGrid>
 						</h:panelGrid>
 						<h:outputText styleClass="bold" value="Definition Expression"></h:outputText>
-						<p:inputTextarea id="countiesTextarea" style="width:95%;" value="#{mapImageSubLayerView.counties.definitionExpression}" disabled="mapImageSubLayerView.counties.visible}">
+						<p:inputTextarea id="countiesTextarea" style="width:95%;" value="#{mapImageSubLayerView.counties.definitionExpression}" disabled="#{not mapImageSubLayerView.counties.visible}">
 							<f:ajax render=":mapForm:map1 statesTextarea"></f:ajax>
 						</p:inputTextarea>
 					</p:panel>
 					<h:panelGrid columns="1" width="100%" styleClass="center">
-						<p:commandButton value="Update" update=":mapForm:map1"></p:commandButton>
+						<p:commandButton value="Update" actionListener="#{mapImageSubLayerView.doUpdateListener}" update=":mapForm:map1"></p:commandButton>
 					</h:panelGrid>
 				</p:panel>
 			</h:form>
@@ -57,7 +75,7 @@
 
 		<pe:layoutPane position="center">
 			<f:facet name="header">
-				<h:outputText value="Map Image Sub Layer"></h:outputText>
+				<h:outputText value="Map Image Sub Layer With Custom Renderer"></h:outputText>
 			</f:facet>
 			<h:form id="centerForm" style="height:100%;">
 				<h:panelGroup id="panel1" layout="block" styleClass="gisfaces-map-panel"></h:panelGroup>

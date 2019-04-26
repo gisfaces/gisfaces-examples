@@ -23,39 +23,54 @@ public class MapImageSubLayerView extends MapView implements Serializable
 	private MapImageLayer layer;
 	private SubLayer states;
 	private SubLayer counties;
+	private String stateColor;
+	private String countyColor;
 
 	@PostConstruct
 	public void init()
 	{
 		super.init();
 
-		// Build a map sublayer.
-		states = new SubLayer();
-		states.setId("3");
-		states.setTitle("Census State");
-		states.setPopupTemplate(new PopupTemplate("State"));
-		states.setDefinitionExpression("STATE_NAME='Florida'");
-		states.setRenderer(new SimpleRenderer(new SimpleFillSymbol(new Color(128, 128, 128, 0.25d))));
+		// Initialize the renderer colors.
+		this.stateColor = "808080";
+		this.countyColor = "FFFF80";
 
 		// Build a map sublayer.
-		counties = new SubLayer();
-		counties.setId("2");
-		counties.setTitle("Census County");
-		counties.setPopupTemplate(new PopupTemplate("County"));
-		counties.setDefinitionExpression("STATE_NAME='Florida' AND NAME LIKE 'M%'");
-		counties.setRenderer(new SimpleRenderer(new SimpleFillSymbol(new Color(255, 255, 128, 0.5d))));
+		this.states = new SubLayer();
+		this.states.setId("3");
+		this.states.setOpacity(0.5d);
+		this.states.setTitle("Census State");
+		this.states.setPopupTemplate(new PopupTemplate("State"));
+		this.states.setDefinitionExpression("STATE_NAME='Florida'");
+		this.states.setRenderer(new SimpleRenderer(new SimpleFillSymbol(new Color(this.stateColor))));
+
+		// Build a map sublayer.
+		this.counties = new SubLayer();
+		this.counties.setId("2");
+		this.counties.setOpacity(0.5d);
+		this.counties.setTitle("Census County");
+		this.counties.setPopupTemplate(new PopupTemplate("County"));
+		this.counties.setDefinitionExpression("STATE_NAME='Florida' AND NAME LIKE 'M%'");
+		this.counties.setRenderer(new SimpleRenderer(new SimpleFillSymbol(new Color(this.countyColor))));
 
 		// Build a map layer.
-		layer = new MapImageLayer("census", "https://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer");
-		layer.setTitle("Census Information");
-		layer.getSublayers().add(states);
-		layer.getSublayers().add(counties);
+		this.layer = new MapImageLayer("census", "https://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer");
+		this.layer.setTitle("Census Information");
+		this.layer.getSublayers().add(states);
+		this.layer.getSublayers().add(counties);
 
 		// Initialize the map view.
 		this.setLatitude(27.750145);
 		this.setLongitude(-82.608625);
 		this.setZoom(6);
 		this.getModel().getLayers().add(layer);
+	}
+
+	public void doUpdateListener()
+	{
+		// Update the layer renderers.
+		this.states.setRenderer(new SimpleRenderer(new SimpleFillSymbol(new Color(this.stateColor))));
+		this.counties.setRenderer(new SimpleRenderer(new SimpleFillSymbol(new Color(this.countyColor))));
 	}
 
 	public MapImageLayer getLayer()
@@ -86,5 +101,25 @@ public class MapImageSubLayerView extends MapView implements Serializable
 	public void setCounties(SubLayer counties)
 	{
 		this.counties = counties;
+	}
+
+	public String getStateColor()
+	{
+		return stateColor;
+	}
+
+	public void setStateColor(String stateColor)
+	{
+		this.stateColor = stateColor;
+	}
+
+	public String getCountyColor()
+	{
+		return countyColor;
+	}
+
+	public void setCountyColor(String countyColor)
+	{
+		this.countyColor = countyColor;
 	}
 }
