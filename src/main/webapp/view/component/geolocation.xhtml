@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:gis="http://gisfaces.com">
+
+<ui:composition template="/view/template/template.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="GISFaces - Standalone Geo-Location Component"></h:outputText>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+
+			<p:growl id="growl1" showSummary="true" showDetail="true" keepAlive="true"></p:growl>
+
+			<p:panelGrid id="grid1" columns="1">
+				<f:facet name="header">
+					<h:outputText value="GISFaces Geo-Location Component"></h:outputText>
+				</f:facet>
+
+				<p:panelGrid columns="2" style="width:100%;">
+					<f:facet name="header">
+						<h:outputText value="Query Parameters"></h:outputText>
+					</f:facet>
+
+					<h:outputLabel for="watch" value="Continuous Watch"></h:outputLabel>
+					<h:selectBooleanCheckbox id="watch" value="#{geoLocationView.watch}">
+						<f:ajax render="geolocation1" execute="@form"></f:ajax>
+					</h:selectBooleanCheckbox>
+
+					<h:outputLabel for="accuracy" value="High Accuracy"></h:outputLabel>
+					<h:selectBooleanCheckbox id="accuracy" value="#{geoLocationView.accuracy}">
+						<f:ajax render="geolocation1" execute="@form"></f:ajax>
+					</h:selectBooleanCheckbox>
+
+					<h:outputLabel for="timeout" value="Request Timeout"></h:outputLabel>
+					<h:inputText id="timeout" value="#{geoLocationView.timeout}"></h:inputText>
+
+					<h:outputLabel for="maximumAge" value="Maximum Age"></h:outputLabel>
+					<h:inputText id="maximumAge" value="#{geoLocationView.maximumAge}"></h:inputText>
+				</p:panelGrid>
+
+				<p:panelGrid columns="2" style="width:100%;" rendered="#{geoLocationView.event != null}">
+					<f:facet name="header">
+						<h:outputText value="Query Results"></h:outputText>
+					</f:facet>
+
+					<h:outputText value="Timestamp"></h:outputText>
+					<h:outputText value="#{geoLocationView.event.timestamp}">
+						<f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss z"></f:convertDateTime>
+					</h:outputText>
+
+					<h:outputText value="Latitude"></h:outputText>
+					<h:outputText value="#{geoLocationView.event.latitude}"></h:outputText>
+
+					<h:outputText value="Longitude"></h:outputText>
+					<h:outputText value="#{geoLocationView.event.longitude}"></h:outputText>
+
+					<h:outputText value="Heading"></h:outputText>
+					<h:outputText value="#{geoLocationView.event.heading} Degrees"></h:outputText>
+
+					<h:outputText value="Speed"></h:outputText>
+					<h:outputText value="#{geoLocationView.event.speed} Meters Per Second"></h:outputText>
+
+					<h:outputText value="Accuracy"></h:outputText>
+					<h:outputText value="#{geoLocationView.event.accuracy} Meters"></h:outputText>
+
+					<h:outputText value="Altitude"></h:outputText>
+					<h:outputText value="#{geoLocationView.event.altitude} Meters"></h:outputText>
+
+					<h:outputText value="Altitude Accuracy"></h:outputText>
+					<h:outputText value="#{geoLocationView.event.altitudeAccuracy} Meters"></h:outputText>
+				</p:panelGrid>
+
+				<f:facet name="footer">
+					<p:link target="_blank" value="Geolocation API Specification" href="https://dev.w3.org/geo/api/spec-source.html"></p:link>
+				</f:facet>
+			</p:panelGrid>
+
+			<gis:geolocation id="geolocation1" watch="#{geoLocationView.watch}" accuracy="#{geoLocationView.accuracy}" timeout="#{geoLocationView.timeout}" maximumAge="#{geoLocationView.maximumAge}">
+				<f:ajax listener="#{geoLocationView.doGeoLocationListener}" render="growl1 grid1"></f:ajax>
+			</gis:geolocation>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+</html>
