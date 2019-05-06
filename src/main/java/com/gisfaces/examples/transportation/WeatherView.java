@@ -17,6 +17,7 @@ public class WeatherView extends MapView implements Serializable
 
 	private MapImageLayer warnings;
 	private MapImageLayer radar;
+	private MapImageLayer graticule;
 
 	public WeatherView()
 	{
@@ -40,9 +41,15 @@ public class WeatherView extends MapView implements Serializable
 		radar.setOpacity(0.5d);
 		radar.setRefreshInterval(5.0);
 
+		// Build a map layer.
+		graticule = new MapImageLayer("graticule", "https://gis.ngdc.noaa.gov/arcgis/rest/services/graticule/MapServer");
+		graticule.setTitle("Graticule Lines");
+		graticule.setOpacity(0.5d);
+
 		// Initialize the map view.
 		this.getModel().getLayers().add(warnings);
 		this.getModel().getLayers().add(radar);
+		this.getModel().getLayers().add(graticule);
 	}
 
 	public MapImageLayer getWarnings()
@@ -63,5 +70,15 @@ public class WeatherView extends MapView implements Serializable
 	public void setRadar(MapImageLayer radar)
 	{
 		this.radar = radar;
+	}
+
+	public MapImageLayer getGraticule()
+	{
+		return graticule;
+	}
+
+	public void setGraticule(MapImageLayer graticule)
+	{
+		this.graticule = graticule;
 	}
 }

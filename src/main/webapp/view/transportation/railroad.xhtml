@@ -67,12 +67,12 @@
 						<h:outputText styleClass="bold" value="Rail Mileposts"></h:outputText>
 					</h:panelGrid>
 				</p:panel>
-				<p:panel header="Weather" styleClass="containerPanel" toggleable="true">
+				<p:panel header="Reference" styleClass="containerPanel" toggleable="true">
 					<h:panelGrid columns="2">
 						<p:toggleSwitch  value="#{railroadView.warnings.visible}">
 							<f:ajax render=":mapForm:map1 warningsSlider"></f:ajax>
 						</p:toggleSwitch >
-						<h:outputText styleClass="bold" value="Weather Warnings"></h:outputText>
+						<h:outputText styleClass="bold" value="#{railroadView.warnings.title}"></h:outputText>
 					</h:panelGrid>
 					<h:panelGrid width="100%" title="Opacity">
 						<p:slider id="warningsSlider" for="warningsOpacity" minValue="0.0" maxValue="1.0" step="0.01" disabled="#{not railroadView.warnings.visible}">
@@ -84,13 +84,25 @@
 						<p:toggleSwitch value="#{railroadView.radar.visible}">
 							<f:ajax render=":mapForm:map1 radarSlider"></f:ajax>
 						</p:toggleSwitch >
-						<h:outputText styleClass="bold" value="Doppler Radar"></h:outputText>
+						<h:outputText styleClass="bold" value="#{railroadView.warnings.title}"></h:outputText>
 					</h:panelGrid>
 					<h:panelGrid width="100%" title="Opacity">
 						<p:slider id="radarSlider" for="radarOpacity" minValue="0.0" maxValue="1.0" step="0.01" disabled="#{not railroadView.radar.visible}">
 							<p:ajax event="slideEnd" process="radarOpacity" update=":mapForm:map1"></p:ajax>
 						</p:slider>
 						<h:inputHidden id="radarOpacity" value="#{railroadView.radar.opacity}"></h:inputHidden>
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<p:toggleSwitch value="#{aeronauticalView.graticule.visible}">
+							<f:ajax render=":mapForm:map1 graticuleSlider"></f:ajax>
+						</p:toggleSwitch >
+						<h:outputText styleClass="bold" value="#{aeronauticalView.graticule.title}"></h:outputText>
+					</h:panelGrid>
+					<h:panelGrid width="100%" title="Opacity">
+						<p:slider id="graticuleSlider" for="graticuleOpacity" minValue="0.0" maxValue="1.0" step="0.01" disabled="#{not aeronauticalView.graticule.visible}">
+							<p:ajax event="slideEnd" process="graticuleOpacity" update=":mapForm:map1"></p:ajax>
+						</p:slider>
+						<h:inputHidden id="graticuleOpacity" value="#{aeronauticalView.graticule.opacity}"></h:inputHidden>
 					</h:panelGrid>
 				</p:panel>
 			</h:form>
