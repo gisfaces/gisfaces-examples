@@ -10,7 +10,7 @@ import com.gisfaces.model.layer.MapImageLayer;
 
 @Named
 @SessionScoped
-public class AeronauticalView extends WeatherView implements Serializable
+public class AeronauticalView extends ReferenceView implements Serializable
 {
 	private static final long serialVersionUID = -6728584306790478248L;
 

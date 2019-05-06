@@ -11,7 +11,7 @@ import com.gisfaces.model.map.Basemap;
 
 @Named
 @SessionScoped
-public class MaritimeView extends WeatherView implements Serializable
+public class MaritimeView extends ReferenceView implements Serializable
 {
 	private static final long serialVersionUID = 2224675449393427902L;
 

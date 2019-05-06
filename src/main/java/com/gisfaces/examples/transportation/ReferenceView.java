@@ -11,7 +11,7 @@ import com.gisfaces.model.layer.MapImageLayer;
 
 @Named
 @SessionScoped
-public class WeatherView extends MapView implements Serializable
+public class ReferenceView extends MapView implements Serializable
 {
 	private static final long serialVersionUID = -666851330961452424L;
 
@@ -19,7 +19,7 @@ public class WeatherView extends MapView implements Serializable
 	private MapImageLayer radar;
 	private MapImageLayer graticule;
 
-	public WeatherView()
+	public ReferenceView()
 	{
 		super();
 	}

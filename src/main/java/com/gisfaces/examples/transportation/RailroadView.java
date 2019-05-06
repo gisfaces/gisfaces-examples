@@ -10,7 +10,7 @@ import com.gisfaces.model.layer.MapImageLayer;
 
 @Named
 @SessionScoped
-public class RailroadView extends WeatherView implements Serializable
+public class RailroadView extends ReferenceView implements Serializable
 {
 	private static final long serialVersionUID = -3883136962716915153L;
 
