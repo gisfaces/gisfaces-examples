@@ -8,6 +8,8 @@ import javax.inject.Named;
 
 import com.gisfaces.examples.map.MapView;
 import com.gisfaces.model.layer.PointCloudLayer;
+import com.gisfaces.model.renderer.FixedSizePointSizeAlgorithm;
+import com.gisfaces.model.renderer.PointCloudRGBRenderer;
 
 @Named
 @SessionScoped
@@ -20,8 +22,15 @@ public class PointCloudLayerView extends MapView implements Serializable
 	{
 		super.init();
 
+		// Build the optional point cloud renderer.
+		PointCloudRGBRenderer renderer = new PointCloudRGBRenderer();
+		renderer.setField("RGB");
+		renderer.setPointsPerInch(25);
+		renderer.setPointSizeAlgorithm(new FixedSizePointSizeAlgorithm(false, 5));
+
 		// Build a map layer.
 		PointCloudLayer layer = new PointCloudLayer("barnegat", "https://tiles.arcgis.com/tiles/V6ZHFr6zdgNZuVG0/arcgis/rest/services/BARNEGAT_BAY_LiDAR_UTM/SceneServer");
+		layer.setRenderer(renderer);
 
 		// Initialize the map view.
 		this.setLatitude(39.772073);
