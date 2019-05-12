@@ -84,7 +84,7 @@
 						<p:toggleSwitch value="#{railroadView.radar.visible}">
 							<f:ajax render=":mapForm:map1 radarSlider"></f:ajax>
 						</p:toggleSwitch >
-						<h:outputText styleClass="bold" value="#{railroadView.warnings.title}"></h:outputText>
+						<h:outputText styleClass="bold" value="#{railroadView.radar.title}"></h:outputText>
 					</h:panelGrid>
 					<h:panelGrid width="100%" title="Opacity">
 						<p:slider id="radarSlider" for="radarOpacity" minValue="0.0" maxValue="1.0" step="0.01" disabled="#{not railroadView.radar.visible}">
