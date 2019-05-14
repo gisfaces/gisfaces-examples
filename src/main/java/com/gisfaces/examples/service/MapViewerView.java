@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ActionEvent;
 import javax.inject.Named;
 
 import org.primefaces.event.RowEditEvent;
@@ -96,6 +97,15 @@ public class MapViewerView extends ReferenceView implements Serializable
 			String detail = String.format("Layer ID='%s', Title='%s' moved to index '%d'.", layer.getId(), layer.getTitle(), index);
 			JSFUtilities.addInfoMessage(summary, detail);
 		}
+	}
+
+	public void doAddButtonActionListener(ActionEvent event)
+	{
+		// Add an empty layer for editing.
+		this.getModel().getLayers().add(new MapImageLayer());
+
+		// Display a message.
+		JSFUtilities.addInfoMessage("Layer Added", "Please edit the new layer details.");
 	}
 
 	public void doDeleteButtonAction(Layer layer)
