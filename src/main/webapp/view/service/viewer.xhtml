@@ -16,7 +16,7 @@
 
 	<ui:define name="content">
 
-		<p:growl id="growl1" showSummary="true" showDetail="true" keepAlive="true"></p:growl>
+		<p:growl id="growl1" showSummary="true" showDetail="true" keepAlive="true" life="4000"></p:growl>
 
 		<pe:layoutPane position="center">
 			<f:facet name="header">
@@ -29,7 +29,7 @@
 
 		<pe:layoutPane position="south" maxHeight="200" closable="true" resizable="false">
 			<h:form id="southForm">
-				<p:dataTable id="datatable1" value="#{mapViewerView.model.layers}" var="layer" editable="true" rowIndexVar="rowIndex">
+				<p:dataTable id="datatable1" value="#{mapViewerView.model.layers}" var="layer" editable="true" rowIndexVar="rowIndex" rowHover="true">
 					<f:facet name="header">
 						<h:outputText value="Map Layers"></h:outputText>
 					</f:facet>
@@ -55,7 +55,14 @@
 						</p:cellEditor>
 					</p:column>
 					<p:column headerText="URL">
-						<h:outputText value="#{layer.url}"></h:outputText>
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{layer.url}"></h:outputText>
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{layer.url}" style="width:100%;"></p:inputText>
+							</f:facet>
+						</p:cellEditor>
 					</p:column>
 					<p:column width="50" headerText="Visible" styleClass="center">
 						<p:cellEditor>
@@ -78,14 +85,14 @@
 						</p:cellEditor>
 					</p:column>
 					<p:column width="50" headerText="Edit" styleClass="center">
-						<p:rowEditor></p:rowEditor>
+						<p:rowEditor editTitle="Edit" saveTitle="Save" cancelTitle="Cancel"></p:rowEditor>
 					</p:column>
 					<p:column width="50" headerText="Reorder" styleClass="center">
 						<p:commandLink title="Move Up" action="#{mapViewerView.doUpButtonAction(layer)}" update=":mapForm:map1 datatable1 growl1" disabled="#{rowIndex eq 0}">
 							<h:panelGroup styleClass="fa fa-arrow-up"></h:panelGroup>
 						</p:commandLink>
 						<p:spacer width="10"></p:spacer>
-						<p:commandLink title="Move Down" action="#{mapViewerView.doDownButtonAction(layer)}" update=":mapForm:map1 datatable1 growl1" disabled="#{rowIndex eq mapViewerView.model.layers.size()-1}">
+						<p:commandLink title="Move Down" action="#{mapViewerView.doDownButtonAction(layer)}" update=":mapForm:map1 datatable1 growl1" disabled="#{rowIndex eq (mapViewerView.model.layers.size()-1)}">
 							<h:panelGroup styleClass="fa fa-arrow-down"></h:panelGroup>
 						</p:commandLink>
 					</p:column>
@@ -94,8 +101,8 @@
 							<h:panelGroup styleClass="fa fa-trash-o"></h:panelGroup>
 						</p:commandLink>
 					</p:column>
-					<f:facet name="footer" >
-						<p:commandButton value="Add" onclick="PF('dialog1').show();" rendered="false"></p:commandButton>
+					<f:facet name="footer">
+						<p:commandButton value="Add" actionListener="#{mapViewerView.doAddButtonActionListener}" update="datatable1 growl1"></p:commandButton>
 					</f:facet>
 				</p:dataTable>
 			</h:form>
@@ -108,11 +115,6 @@
 				<f:ajax event="extent" listener="#{mapViewerView.doMapExtentListener}" render="growl1"></f:ajax>
 				<f:ajax event="select" listener="#{mapViewerView.doMapSelectListener}" render="growl1"></f:ajax>
 			</gis:map>
-		</h:form>
-
-		<h:form>
-			<p:dialog header="Add Map Layer" widgetVar="dialog1" modal="true" height="100" width="500" resizable="false" appendTo="@(body)">
-			</p:dialog>
 		</h:form>
 
 	</ui:define>
