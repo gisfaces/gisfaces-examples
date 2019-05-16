@@ -27,7 +27,7 @@
 			</h:form>
 		</pe:layoutPane>
 
-		<pe:layoutPane position="south" maxHeight="200" closable="true" resizable="false">
+		<pe:layoutPane position="south" maxSize="50%" closable="true" resizable="false">
 			<h:form id="southForm">
 				<p:dataTable id="datatable1" value="#{mapViewerView.model.layers}" var="layer" editable="true" rowIndexVar="rowIndex" rowHover="true">
 					<f:facet name="header">
@@ -102,7 +102,7 @@
 						</p:commandLink>
 					</p:column>
 					<f:facet name="footer">
-						<p:commandButton value="Add" actionListener="#{mapViewerView.doAddButtonActionListener}" update="datatable1 growl1"></p:commandButton>
+						<p:commandButton value="Add" icon="fa fa-plus" actionListener="#{mapViewerView.doAddButtonActionListener}" update="datatable1 growl1"></p:commandButton>
 					</f:facet>
 				</p:dataTable>
 			</h:form>
