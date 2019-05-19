@@ -83,7 +83,7 @@
 		</pe:layoutPane>
 
 		<h:form id="mapForm">
-			<gis:map id="map1" panel=":centerForm:panel1" basemap="#{mapImageSubLayerView.basemap}" latitude="#{mapImageSubLayerView.latitude}" longitude="#{mapImageSubLayerView.longitude}" zoom="#{mapImageSubLayerView.zoom}" model="#{mapImageSubLayerView.model}">
+			<gis:map id="map1" panel=":centerForm:panel1" model="#{mapImageSubLayerView.model}">
 				<f:ajax event="basemap" listener="#{mapImageSubLayerView.doMapBasemapListener}" render="growl1"></f:ajax>
 				<f:ajax event="click" listener="#{mapImageSubLayerView.doMapClickListener}" render="growl1"></f:ajax>
 				<f:ajax event="extent" listener="#{mapImageSubLayerView.doMapExtentListener}" render="growl1"></f:ajax>

@@ -24,9 +24,9 @@ public class FeatureLayerView extends MapView implements Serializable
 		FeatureLayer layer = new FeatureLayer("trees", "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Landscape_Trees/FeatureServer/0");
 
 		// Initialize the map view.
-		this.setLatitude(35.612362);
-		this.setLongitude(-82.442788);
-		this.setZoom(16);
+		this.getModel().getViewpoint().setLatitude(35.612362);
+		this.getModel().getViewpoint().setLongitude(-82.442788);
+		this.getModel().getViewpoint().setZoom(16);
 		this.getModel().getLayers().add(layer);
 	}
 }

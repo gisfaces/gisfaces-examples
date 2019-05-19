@@ -37,9 +37,9 @@ public class RailroadView extends ReferenceView implements Serializable
 		mileposts = new MapImageLayer("mileposts", "https://fragis.fra.dot.gov/fragis/rest/services/Mileposts/MapServer");
 
 		// Initialize the map view.
-		this.setLatitude(41.8);
-		this.setLongitude(-87.7);
-		this.setZoom(10);
+		this.getModel().getViewpoint().setLatitude(41.8);
+		this.getModel().getViewpoint().setLongitude(-87.7);
+		this.getModel().getViewpoint().setZoom(10);
 		this.getModel().getLayers().add(rail);
 		this.getModel().getLayers().add(yards);
 		this.getModel().getLayers().add(passenger);

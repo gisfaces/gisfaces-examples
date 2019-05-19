@@ -33,10 +33,10 @@ public class StreamLayerView extends MapView implements Serializable
 		layer.setUrl("https://geoeventsample1.esri.com:6443/arcgis/rest/services/LABus/StreamServer");
 
 		// Initialize the map view.
-		this.setBasemap(Basemap.LIGHTGRAY.getValue());
-		this.setLatitude(34.095316);
-		this.setLongitude(-118.354697);
-		this.setZoom(10);
+		this.getModel().setBasemap(Basemap.LIGHTGRAY);
+		this.getModel().getViewpoint().setLatitude(34.095316);
+		this.getModel().getViewpoint().setLongitude(-118.354697);
+		this.getModel().getViewpoint().setZoom(10);
 		this.getModel().getLayers().add(layer);
 	}
 }

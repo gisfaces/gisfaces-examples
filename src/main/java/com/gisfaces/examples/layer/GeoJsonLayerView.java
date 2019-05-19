@@ -31,9 +31,9 @@ public class GeoJsonLayerView extends MapView implements Serializable
 		layer.setUrl("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson");
 
 		// Initialize the map view.
-		this.setLatitude(39.828175);
-		this.setLongitude(-98.5795);
-		this.setZoom(4);
+		this.getModel().getViewpoint().setLatitude(39.828175);
+		this.getModel().getViewpoint().setLongitude(-98.5795);
+		this.getModel().getViewpoint().setZoom(4);
 		this.getModel().getLayers().add(layer);
 	}
 }

@@ -35,10 +35,10 @@ public class TileLayerView extends MapView implements Serializable
 		streets.setUrl("https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer");
 
 		// Initialize the map view.
-		this.setBasemap(Basemap.LIGHTGRAY.getValue());
-		this.setLatitude(40.664875);
-		this.setLongitude(-73.988606);
-		this.setZoom(11);
+		this.getModel().setBasemap(Basemap.LIGHTGRAY);
+		this.getModel().getViewpoint().setLatitude(40.664875);
+		this.getModel().getViewpoint().setLongitude(-73.988606);
+		this.getModel().getViewpoint().setZoom(11);
 		this.getModel().getLayers().add(housing);
 		this.getModel().getLayers().add(streets);
 	}

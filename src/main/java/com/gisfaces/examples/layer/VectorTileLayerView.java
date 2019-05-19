@@ -28,7 +28,7 @@ public class VectorTileLayerView extends MapView implements Serializable
 		layer.setUrl("https://jsapi.maps.arcgis.com/sharing/rest/content/items/75f4dfdff19e445395653121a95a85db/resources/styles/root.json");
 
 		// Initialize the map view.
-		this.setBasemap(Basemap.LIGHTGRAY.getValue());
+		this.getModel().setBasemap(Basemap.LIGHTGRAY);
 		this.getModel().getLayers().add(layer);
 	}
 }

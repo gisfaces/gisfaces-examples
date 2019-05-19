@@ -100,7 +100,7 @@
 		</pe:layoutPane>
 
 		<h:form id="mapForm">
-			<gis:map id="map1" panel=":centerForm:panel1" basemap="#{maritimeView.basemap}" latitude="#{maritimeView.latitude}" longitude="#{maritimeView.longitude}" zoom="#{maritimeView.zoom}" model="#{maritimeView.model}">
+			<gis:map id="map1" panel=":centerForm:panel1" model="#{maritimeView.model}">
 				<f:ajax event="basemap" listener="#{maritimeView.doMapBasemapListener}" render="growl1"></f:ajax>
 				<f:ajax event="click" listener="#{maritimeView.doMapClickListener}" render="growl1"></f:ajax>
 				<f:ajax event="extent" listener="#{maritimeView.doMapExtentListener}" render="growl1"></f:ajax>

@@ -32,7 +32,7 @@ public class MaritimeView extends ReferenceView implements Serializable
 		dams = new MapImageLayer("dams", "https://maps.bts.dot.gov/services/rest/services/NTAD/Dams/MapServer");
 
 		// Set the map basemap.
-		this.setBasemap(Basemap.OCEANS.getValue());
+		this.getModel().setBasemap(Basemap.OCEANS);
 
 		// Some services may require the included proxy to be enabled.
 		this.getModel().getConfiguration().setProxyEnabled(true);

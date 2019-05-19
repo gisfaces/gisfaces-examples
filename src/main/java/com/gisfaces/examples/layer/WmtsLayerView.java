@@ -9,6 +9,7 @@ import javax.inject.Named;
 import com.gisfaces.examples.map.MapView;
 import com.gisfaces.model.layer.WMTSLayer;
 import com.gisfaces.model.layer.WMTSSubLayer;
+import com.gisfaces.model.map.MapType;
 
 @Named
 @SessionScoped
@@ -30,6 +31,7 @@ public class WmtsLayerView extends MapView implements Serializable
 		layer.setActiveLayer(new WMTSSubLayer("SRTM_Color_Index"));
 
 		// Initialize the map view.
+		this.getModel().setMapType(MapType.TWO_D);
 		this.getModel().getLayers().add(layer);
 	}
 }

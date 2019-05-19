@@ -25,20 +25,16 @@ public class MapView implements Serializable
 {
 	private static final long serialVersionUID = 848357454974222535L;
 
-	private String basemap;
-	private double latitude;
-	private double longitude;
-	private double zoom;
 	private MapModel model;
 
 	@PostConstruct
 	public void init()
 	{
-		this.basemap = Basemap.STREETS.getValue();
-		this.latitude = 39.828175;
-		this.longitude = -98.5795;
-		this.zoom = 4;
 		this.model = new MapModel();
+		this.model.setBasemap(Basemap.STREETS);
+		this.model.getViewpoint().setLatitude(39.828175);
+		this.model.getViewpoint().setLongitude(-98.5795);
+		this.model.getViewpoint().setZoom(4);
 	}
 
 	public List<SelectItem> getBasemaps()
@@ -105,46 +101,6 @@ public class MapView implements Serializable
 	{
 		System.out.println("Map view reset action listener fired.");
 		this.init();
-	}
-
-	public String getBasemap()
-	{
-		return basemap;
-	}
-
-	public void setBasemap(String basemap)
-	{
-		this.basemap = basemap;
-	}
-
-	public double getLatitude()
-	{
-		return latitude;
-	}
-
-	public void setLatitude(double latitude)
-	{
-		this.latitude = latitude;
-	}
-
-	public double getLongitude()
-	{
-		return longitude;
-	}
-
-	public void setLongitude(double longitude)
-	{
-		this.longitude = longitude;
-	}
-
-	public double getZoom()
-	{
-		return zoom;
-	}
-
-	public void setZoom(double zoom)
-	{
-		this.zoom = zoom;
 	}
 
 	public MapModel getModel()

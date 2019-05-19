@@ -26,7 +26,7 @@
 
 				<h:panelGroup id="panel1" layout="block" styleClass="gisfaces-map-panel"></h:panelGroup>
 
-				<gis:map panel="panel1" basemap="#{sceneLayerView.basemap}" latitude="#{sceneLayerView.latitude}" longitude="#{sceneLayerView.longitude}" zoom="#{sceneLayerView.zoom}" model="#{sceneLayerView.model}">
+				<gis:map panel="panel1" model="#{sceneLayerView.model}">
 					<f:ajax event="basemap" listener="#{sceneLayerView.doMapBasemapListener}" render="growl1"></f:ajax>
 					<f:ajax event="click" listener="#{sceneLayerView.doMapClickListener}" render="growl1"></f:ajax>
 					<f:ajax event="extent" listener="#{sceneLayerView.doMapExtentListener}" render="growl1"></f:ajax>

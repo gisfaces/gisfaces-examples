@@ -118,7 +118,7 @@
 		</pe:layoutPane>
 
 		<h:form id="mapForm">
-			<gis:map id="map1" panel=":centerForm:panel1" basemap="#{railroadView.basemap}" latitude="#{railroadView.latitude}" longitude="#{railroadView.longitude}" zoom="#{railroadView.zoom}" model="#{railroadView.model}">
+			<gis:map id="map1" panel=":centerForm:panel1" model="#{railroadView.model}">
 				<f:ajax event="basemap" listener="#{railroadView.doMapBasemapListener}" render="growl1"></f:ajax>
 				<f:ajax event="click" listener="#{railroadView.doMapClickListener}" render="growl1"></f:ajax>
 				<f:ajax event="extent" listener="#{railroadView.doMapExtentListener}" render="growl1"></f:ajax>

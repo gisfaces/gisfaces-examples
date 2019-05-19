@@ -60,9 +60,9 @@ public class MapImageSubLayerView extends MapView implements Serializable
 		this.layer.getSublayers().add(counties);
 
 		// Initialize the map view.
-		this.setLatitude(27.750145);
-		this.setLongitude(-82.608625);
-		this.setZoom(6);
+		this.getModel().getViewpoint().setLatitude(27.750145);
+		this.getModel().getViewpoint().setLongitude(-82.608625);
+		this.getModel().getViewpoint().setZoom(6);
 		this.getModel().getLayers().add(layer);
 	}
 

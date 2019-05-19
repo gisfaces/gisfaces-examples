@@ -22,7 +22,7 @@
 			</f:facet>
 			<h:form style="height:100%;">
 				<h:panelGroup id="panel1" layout="block" styleClass="gisfaces-map-panel"></h:panelGroup>
-				<gis:map panel="panel1" basemap="streets" latitude="39.828175" longitude="-98.5795" zoom="4" type="3d"></gis:map>
+				<gis:map panel="panel1" model="#{mapView.model}"></gis:map>
 			</h:form>
 		</pe:layoutPane>
 

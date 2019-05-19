@@ -12,6 +12,7 @@ import com.gisfaces.event.MapGraphicDeleteEvent;
 import com.gisfaces.event.MapGraphicUpdateEvent;
 import com.gisfaces.examples.map.MapView;
 import com.gisfaces.model.layer.GraphicsLayer;
+import com.gisfaces.model.map.MapType;
 import com.gisfaces.utilities.JSFUtilities;
 
 @Named
@@ -32,9 +33,10 @@ public class GraphicsLayerEditView extends MapView implements Serializable
 		layer.setTitle("Graphics Layer Edit");
 
 		// Initialize the map view.
-		this.setLatitude(39.828175);
-		this.setLongitude(-98.5795);
-		this.setZoom(4);
+		this.getModel().setMapType(MapType.TWO_D);
+		this.getModel().getViewpoint().setLatitude(39.828175);
+		this.getModel().getViewpoint().setLongitude(-98.5795);
+		this.getModel().getViewpoint().setZoom(4);
 		this.getModel().getLayers().add(layer);
 	}
 

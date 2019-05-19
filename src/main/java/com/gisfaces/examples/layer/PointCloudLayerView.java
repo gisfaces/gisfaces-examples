@@ -33,9 +33,9 @@ public class PointCloudLayerView extends MapView implements Serializable
 		layer.setRenderer(renderer);
 
 		// Initialize the map view.
-		this.setLatitude(39.772073);
-		this.setLongitude(-74.121410);
-		this.setZoom(12);
+		this.getModel().getViewpoint().setLatitude(39.772073);
+		this.getModel().getViewpoint().setLongitude(-74.121410);
+		this.getModel().getViewpoint().setZoom(12);
 		this.getModel().getLayers().add(layer);
 	}
 }
