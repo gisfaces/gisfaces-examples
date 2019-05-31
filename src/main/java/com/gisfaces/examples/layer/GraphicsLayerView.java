@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.net.URL;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -17,11 +16,13 @@ import javax.inject.Named;
 import javax.net.ssl.HttpsURLConnection;
 
 import com.gisfaces.examples.map.MapView;
+import com.gisfaces.model.color.Color;
 import com.gisfaces.model.geometry.Point;
 import com.gisfaces.model.graphic.Graphic;
 import com.gisfaces.model.layer.GraphicsLayer;
 import com.gisfaces.model.map.PopupTemplate;
 import com.gisfaces.model.symbol.PictureMarkerSymbol;
+import com.gisfaces.model.symbol.TextSymbol;
 import com.gisfaces.utilities.JSFUtilities;
 
 @Named
@@ -105,12 +106,19 @@ public class GraphicsLayerView extends MapView implements Serializable
 				// Check for comment line.
 				if (!line.startsWith("#"))
 				{
-					// Preprocess the raw data line into a standardized format.
-					line = line.replaceAll("\\s+", "|").replaceAll("MM", "");
-
 					try
 					{
-						graphics.add(this.createGraphic(line));
+						// Preprocess the raw data line into a standardized format.
+						line = line.replaceAll("\\s+", "|").replaceAll("MM", "");
+
+						// Tokenize the data string.
+						String[] tokens = line.split("\\|", -1);
+
+						// Add a marker graphic.
+						graphics.add(this.createMarkerGraphic(tokens));
+
+						// Add a text graphic.
+						graphics.add(this.createTextGraphic(tokens));
 					}
 					catch (Exception e)
 					{
@@ -123,32 +131,8 @@ public class GraphicsLayerView extends MapView implements Serializable
 		return graphics;
 	}
 
-	private Graphic createGraphic(String data) throws NullPointerException, IllegalArgumentException, ParseException
+	private Graphic createMarkerGraphic(String[] tokens)
 	{
-		// Tokenize the data string.
-		String[] tokens = data.split("\\|", -1);
-
-		// Build the graphic attributes.
-		Map<String, Object> attributes = new LinkedHashMap<String, Object>();
-		attributes.put("Station ID", tokens[0]);
-		attributes.put("Latitude", tokens[1]);
-		attributes.put("Longitude", tokens[2]);
-		attributes.put("Date", String.format("%s/%s/%s %s:%s", tokens[3], tokens[4], tokens[5], tokens[6], tokens[7]));
-		attributes.put("Wind Origination", tokens[8]);
-		attributes.put("Wind Speed", tokens[9]);
-		attributes.put("Wind Gust", tokens[10]);
-		attributes.put("Significant Wave Height", tokens[11]); 
-		attributes.put("Dominant Wave Period", tokens[12]);
-		attributes.put("Average Wave Period", tokens[13]);
-		attributes.put("Wave Direction", tokens[14]);
-		attributes.put("Sea Level Pressure", tokens[15]);
-		attributes.put("Pressure Tendency", tokens[16]);
-		attributes.put("Air Temperature", tokens[17]);
-		attributes.put("Sea Surface Temperature", tokens[18]);
-		attributes.put("Dewpoint Temperature", tokens[19]);
-		attributes.put("Visibility", tokens[20]);
-		attributes.put("Tide", tokens[21]);
-
 		//SimpleMarkerSymbol symbol = new SimpleMarkerSymbol();
 		//symbol.setPath(SimpleMarkerSymbolPath.ARROW.toString());
 		//symbol.setAngle(Integer.parseInt(tokens[8]));
@@ -171,8 +155,53 @@ public class GraphicsLayerView extends MapView implements Serializable
 		graphic.setGeometry(new Point(Double.parseDouble(tokens[1]), Double.parseDouble(tokens[2])));
 		graphic.setSymbol(symbol);
 		graphic.setPopupTemplate(new PopupTemplate("Data Bouy " + tokens[0]));
-		graphic.setAttributes(attributes);
+		graphic.setAttributes(this.createAttributes(tokens));
 
 		return graphic;
+	}
+
+	private Graphic createTextGraphic(String[] tokens)
+	{
+		TextSymbol symbol = new TextSymbol();
+		symbol.setText(tokens[0]);
+		symbol.setColor(new Color("#FF8C00"));
+		symbol.setHaloColor(new Color("#808080"));
+		symbol.setHaloSize("1px");
+		symbol.setYoffset("-20px");
+
+		Graphic graphic = new Graphic();
+		graphic.setId(tokens[0]);
+		graphic.setGeometry(new Point(Double.parseDouble(tokens[1]), Double.parseDouble(tokens[2])));
+		graphic.setSymbol(symbol);
+		graphic.setPopupTemplate(new PopupTemplate("Data Bouy " + tokens[0]));
+		graphic.setAttributes(this.createAttributes(tokens));
+
+		return graphic;
+	}
+
+	private Map<String, Object> createAttributes(String[] tokens)
+	{
+		// Build the graphic attributes.
+		Map<String, Object> attributes = new LinkedHashMap<String, Object>();
+		attributes.put("Station ID", tokens[0]);
+		attributes.put("Latitude", tokens[1]);
+		attributes.put("Longitude", tokens[2]);
+		attributes.put("Date", String.format("%s/%s/%s %s:%s", tokens[3], tokens[4], tokens[5], tokens[6], tokens[7]));
+		attributes.put("Wind Origination", tokens[8]);
+		attributes.put("Wind Speed", tokens[9]);
+		attributes.put("Wind Gust", tokens[10]);
+		attributes.put("Significant Wave Height", tokens[11]); 
+		attributes.put("Dominant Wave Period", tokens[12]);
+		attributes.put("Average Wave Period", tokens[13]);
+		attributes.put("Wave Direction", tokens[14]);
+		attributes.put("Sea Level Pressure", tokens[15]);
+		attributes.put("Pressure Tendency", tokens[16]);
+		attributes.put("Air Temperature", tokens[17]);
+		attributes.put("Sea Surface Temperature", tokens[18]);
+		attributes.put("Dewpoint Temperature", tokens[19]);
+		attributes.put("Visibility", tokens[20]);
+		attributes.put("Tide", tokens[21]);
+
+		return attributes;
 	}
 }
