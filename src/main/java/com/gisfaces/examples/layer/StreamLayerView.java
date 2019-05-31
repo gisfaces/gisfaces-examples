@@ -7,10 +7,14 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import com.gisfaces.examples.map.MapView;
+import com.gisfaces.model.color.Color;
 import com.gisfaces.model.layer.StreamLayer;
 import com.gisfaces.model.layer.StreamLayerPurgeOptions;
 import com.gisfaces.model.map.Basemap;
 import com.gisfaces.model.map.PopupTemplate;
+import com.gisfaces.model.symbol.LabelClass;
+import com.gisfaces.model.symbol.LabelExpressionInfo;
+import com.gisfaces.model.symbol.TextSymbol;
 
 @Named
 @SessionScoped
@@ -23,6 +27,17 @@ public class StreamLayerView extends MapView implements Serializable
 	{
 		super.init();
 
+		// Build a symbol for the label.
+		TextSymbol symbol = new TextSymbol();
+		symbol.setColor(new Color("#FF8C00"));
+		symbol.setHaloColor(new Color("#808080"));
+		symbol.setHaloSize("1px");
+
+		// Build a label for the specified fields.
+		LabelClass label = new LabelClass();
+		label.setLabelExpressionInfo(new LabelExpressionInfo("$feature.id"));
+		label.setSymbol(symbol);
+
 		// Build a map layer.
 		StreamLayer layer = new StreamLayer();
 		layer.setId("labus");
@@ -31,6 +46,8 @@ public class StreamLayerView extends MapView implements Serializable
 		layer.setPopupTemplate(new PopupTemplate("LA Bus {id} Route {route_id}", "{*}"));
 		layer.setPurgeOptions(new StreamLayerPurgeOptions(1000, 10));
 		layer.setUrl("https://geoeventsample1.esri.com:6443/arcgis/rest/services/LABus/StreamServer");
+		layer.setLabelsVisible(true);
+		layer.setLabelingInfo(new LabelClass[] { label } );
 
 		// Initialize the map view.
 		this.getModel().setBasemap(Basemap.LIGHTGRAY);
