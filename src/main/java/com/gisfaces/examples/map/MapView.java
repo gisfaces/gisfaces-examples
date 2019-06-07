@@ -69,7 +69,7 @@ public class MapView implements Serializable
 		MapExtentEvent e = (MapExtentEvent) event;
 
 		String summary = "Map Extent Event";
-		String detail = String.format("Latitude='%s', Longitude='%s', Zoom='%s', Scale='%s', WKID='%s', XMin='%s', YMin='%s', XMax='%s', YMax='%s'", e.getLatitude(), e.getLongitude(), e.getZoom(), e.getScale(), e.getExtent().getWkid(), e.getExtent().getXmin(), e.getExtent().getYmin(), e.getExtent().getXmax(), e.getExtent().getYmax());
+		String detail = String.format("Latitude='%s', Longitude='%s', Zoom='%s', Scale='%s', WKID='%s', XMin='%s', YMin='%s', XMax='%s', YMax='%s'", e.getLatitude(), e.getLongitude(), e.getZoom(), e.getScale(), e.getExtent().getSpatialReference().getWkid(), e.getExtent().getXmin(), e.getExtent().getYmin(), e.getExtent().getXmax(), e.getExtent().getYmax());
 
 		System.out.println(String.format("%s: %s", summary, detail));
 		JSFUtilities.addInfoMessage(summary, detail);
