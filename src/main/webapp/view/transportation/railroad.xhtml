@@ -31,31 +31,25 @@
 						<h:outputText styleClass="bold" value="Rail Main Line"></h:outputText>
 					</h:panelGrid>
 					<h:panelGrid columns="2">
-						<p:toggleSwitch value="#{railroadView.yards.visible}">
-							<f:ajax render=":mapForm:map1"></f:ajax>
-						</p:toggleSwitch>
-						<h:outputText styleClass="bold" value="Rail Yards"></h:outputText>
-					</h:panelGrid>
-					<h:panelGrid columns="2">
 						<p:toggleSwitch value="#{railroadView.passenger.visible}">
 							<f:ajax render=":mapForm:map1"></f:ajax>
 						</p:toggleSwitch>
 						<h:outputText styleClass="bold" value="Passenger Rail"></h:outputText>
 					</h:panelGrid>
 					<h:panelGrid columns="2">
-						<p:toggleSwitch value="#{railroadView.freight.visible}">
-							<f:ajax render=":mapForm:map1"></f:ajax>
-						</p:toggleSwitch>
-						<h:outputText styleClass="bold" value="Freight Stations"></h:outputText>
-					</h:panelGrid>
-					<h:panelGrid columns="2">
 						<p:toggleSwitch value="#{railroadView.bridges.visible}">
 							<f:ajax render=":mapForm:map1"></f:ajax>
 						</p:toggleSwitch>
-						<h:outputText styleClass="bold" value="Safety Bridges"></h:outputText>
+						<h:outputText styleClass="bold" value="Bridges"></h:outputText>
 					</h:panelGrid>
 					<h:panelGrid columns="2">
 						<p:toggleSwitch value="#{railroadView.crossings.visible}">
+							<f:ajax render=":mapForm:map1"></f:ajax>
+						</p:toggleSwitch>
+						<h:outputText styleClass="bold" value="Safety Crossings"></h:outputText>
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<p:toggleSwitch value="#{railroadView.safety.visible}">
 							<f:ajax render=":mapForm:map1"></f:ajax>
 						</p:toggleSwitch>
 						<h:outputText styleClass="bold" value="Rail Crossings"></h:outputText>
@@ -93,16 +87,16 @@
 						<h:inputHidden id="radarOpacity" value="#{railroadView.radar.opacity}"></h:inputHidden>
 					</h:panelGrid>
 					<h:panelGrid columns="2">
-						<p:toggleSwitch value="#{aeronauticalView.graticule.visible}">
+						<p:toggleSwitch value="#{railroadView.graticule.visible}">
 							<f:ajax render=":mapForm:map1 graticuleSlider"></f:ajax>
 						</p:toggleSwitch >
-						<h:outputText styleClass="bold" value="#{aeronauticalView.graticule.title}"></h:outputText>
+						<h:outputText styleClass="bold" value="#{railroadView.graticule.title}"></h:outputText>
 					</h:panelGrid>
 					<h:panelGrid width="100%" title="Opacity">
-						<p:slider id="graticuleSlider" for="graticuleOpacity" minValue="0.0" maxValue="1.0" step="0.01" disabled="#{not aeronauticalView.graticule.visible}">
+						<p:slider id="graticuleSlider" for="graticuleOpacity" minValue="0.0" maxValue="1.0" step="0.01" disabled="#{not railroadView.graticule.visible}">
 							<p:ajax event="slideEnd" process="graticuleOpacity" update=":mapForm:map1"></p:ajax>
 						</p:slider>
-						<h:inputHidden id="graticuleOpacity" value="#{aeronauticalView.graticule.opacity}"></h:inputHidden>
+						<h:inputHidden id="graticuleOpacity" value="#{railroadView.graticule.opacity}"></h:inputHidden>
 					</h:panelGrid>
 				</p:panel>
 			</h:form>

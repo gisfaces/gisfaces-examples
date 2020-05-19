@@ -15,11 +15,10 @@ public class RailroadView extends ReferenceView implements Serializable
 	private static final long serialVersionUID = -3883136962716915153L;
 
 	private MapImageLayer rail;
-	private MapImageLayer yards;
 	private MapImageLayer passenger;
-	private MapImageLayer freight;
 	private MapImageLayer bridges;
 	private MapImageLayer crossings;
+	private MapImageLayer safety;
 	private MapImageLayer mileposts;
 
 	@PostConstruct
@@ -28,24 +27,22 @@ public class RailroadView extends ReferenceView implements Serializable
 		super.init();
 
 		// Build the map layers.
-		rail = new MapImageLayer("rail", "https://fragis.fra.dot.gov/fragis/rest/services/RailMainLine/MapServer");
-		yards = new MapImageLayer("yards", "https://fragis.fra.dot.gov/fragis/rest/services/RailYards/MapServer");
-		passenger = new MapImageLayer("passenger", "https://fragis.fra.dot.gov/fragis/rest/services/PassengerRail/MapServer");
-		freight = new MapImageLayer("freight", "https://fragis.fra.dot.gov/fragis/rest/services/FreightStations/MapServer");
-		bridges = new MapImageLayer("bridges", "https://fragis.fra.dot.gov/fragis/rest/services/SafetyBridges/MapServer");
-		crossings = new MapImageLayer("crossings", "https://fragis.fra.dot.gov/fragis/rest/services/FRAGradeXing/MapServer");
-		mileposts = new MapImageLayer("mileposts", "https://fragis.fra.dot.gov/fragis/rest/services/Mileposts/MapServer");
+		rail = new MapImageLayer("rail", "https://fragis.fra.dot.gov/fragis/rest/services/FRA/MainLine/MapServer");
+		passenger = new MapImageLayer("passenger", "https://fragis.fra.dot.gov/fragis/rest/services/FRA/PassengerRail/MapServer");
+		bridges = new MapImageLayer("bridges", "https://fragis.fra.dot.gov/fragis/rest/services/Safety/FRA_Bridges/MapServer");
+		crossings = new MapImageLayer("crossings", "https://fragis.fra.dot.gov/fragis/rest/services/Safety/Safety_Crossings/MapServer");
+		safety = new MapImageLayer("yards", "https://fragis.fra.dot.gov/fragis/rest/services/FRA/FRAGradeXing/MapServer");
+		mileposts = new MapImageLayer("mileposts", "https://fragis.fra.dot.gov/fragis/rest/services/FRA/Mileposts/MapServer");
 
 		// Initialize the map view.
 		this.getModel().getViewpoint().setLatitude(41.8);
 		this.getModel().getViewpoint().setLongitude(-87.7);
 		this.getModel().getViewpoint().setZoom(10);
 		this.getModel().getLayers().add(rail);
-		this.getModel().getLayers().add(yards);
 		this.getModel().getLayers().add(passenger);
-		this.getModel().getLayers().add(freight);
 		this.getModel().getLayers().add(bridges);
 		this.getModel().getLayers().add(crossings);
+		this.getModel().getLayers().add(safety);
 		this.getModel().getLayers().add(mileposts);
 	}
 
@@ -59,16 +56,6 @@ public class RailroadView extends ReferenceView implements Serializable
 		this.rail = rail;
 	}
 
-	public MapImageLayer getYards()
-	{
-		return yards;
-	}
-
-	public void setYards(MapImageLayer yards)
-	{
-		this.yards = yards;
-	}
-
 	public MapImageLayer getPassenger()
 	{
 		return passenger;
@@ -77,16 +64,6 @@ public class RailroadView extends ReferenceView implements Serializable
 	public void setPassenger(MapImageLayer passenger)
 	{
 		this.passenger = passenger;
-	}
-
-	public MapImageLayer getFreight()
-	{
-		return freight;
-	}
-
-	public void setFreight(MapImageLayer freight)
-	{
-		this.freight = freight;
 	}
 
 	public MapImageLayer getBridges()
@@ -107,6 +84,16 @@ public class RailroadView extends ReferenceView implements Serializable
 	public void setCrossings(MapImageLayer crossings)
 	{
 		this.crossings = crossings;
+	}
+
+	public MapImageLayer getSafety()
+	{
+		return safety;
+	}
+
+	public void setSafety(MapImageLayer safety)
+	{
+		this.safety = safety;
 	}
 
 	public MapImageLayer getMileposts()
