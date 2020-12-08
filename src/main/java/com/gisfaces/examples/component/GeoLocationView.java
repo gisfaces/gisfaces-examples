@@ -1,19 +1,40 @@
+/*
+ * The MIT License
+ *
+ * Copyright (c) 2013-2021 Chris Duncan (cduncan@gisfaces.com)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
 package com.gisfaces.examples.component;
 
+import com.gisfaces.event.MapGeoLocationEvent;
+import com.gisfaces.utilities.JSFUtilities;
 import java.io.Serializable;
-
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Named;
 
-import com.gisfaces.event.MapGeoLocationEvent;
-import com.gisfaces.utilities.JSFUtilities;
-
 @Named
 @SessionScoped
-public class GeoLocationView implements Serializable
-{
+public class GeoLocationView implements Serializable {
 	private static final long serialVersionUID = -8866985012091642915L;
 
 	private boolean watch;
@@ -23,8 +44,7 @@ public class GeoLocationView implements Serializable
 	private MapGeoLocationEvent event;
 
 	@PostConstruct
-	public void init()
-	{
+	public void init() {
 		this.watch = true;
 		this.accuracy = true;
 		this.timeout = 60000;
@@ -32,65 +52,55 @@ public class GeoLocationView implements Serializable
 		this.event = null;
 	}
 
-	public void doGeoLocationListener(AjaxBehaviorEvent event)
-	{
+	public void doGeoLocationListener(AjaxBehaviorEvent event) {
 		this.event = (MapGeoLocationEvent) event;
 
-		if (this.event != null)
-		{
+		if (this.event != null) {
 			String summary = "Geo-location event.";
-			String detail = String.format("Timestamp='%s', Latitude='%s', Longitude='%s', Heading='%s', Speed='%s', Altitude='%s'", this.event.getTimestampDate(), this.event.getLatitude(), this.event.getLongitude(), this.event.getHeading(), this.event.getSpeed(), this.event.getAltitude());
+			String detail = String.format("Timestamp='%s', Latitude='%s', Longitude='%s', Heading='%s', Speed='%s', Altitude='%s'",
+					this.event.getTimestampDate(), this.event.getLatitude(), this.event.getLongitude(), this.event.getHeading(), this.event.getSpeed(),
+					this.event.getAltitude());
 			JSFUtilities.addInfoMessage(summary, detail);
 		}
 	}
 
-	public boolean isWatch()
-	{
+	public boolean isWatch() {
 		return watch;
 	}
 
-	public void setWatch(boolean watch)
-	{
+	public void setWatch(boolean watch) {
 		this.watch = watch;
 	}
 
-	public boolean isAccuracy()
-	{
+	public boolean isAccuracy() {
 		return accuracy;
 	}
 
-	public void setAccuracy(boolean accuracy)
-	{
+	public void setAccuracy(boolean accuracy) {
 		this.accuracy = accuracy;
 	}
 
-	public int getTimeout()
-	{
+	public int getTimeout() {
 		return timeout;
 	}
 
-	public void setTimeout(int timeout)
-	{
+	public void setTimeout(int timeout) {
 		this.timeout = timeout;
 	}
 
-	public int getMaximumAge()
-	{
+	public int getMaximumAge() {
 		return maximumAge;
 	}
 
-	public void setMaximumAge(int maximumAge)
-	{
+	public void setMaximumAge(int maximumAge) {
 		this.maximumAge = maximumAge;
 	}
 
-	public MapGeoLocationEvent getEvent()
-	{
+	public MapGeoLocationEvent getEvent() {
 		return event;
 	}
 
-	public void setEvent(MapGeoLocationEvent event)
-	{
+	public void setEvent(MapGeoLocationEvent event) {
 		this.event = event;
 	}
 }

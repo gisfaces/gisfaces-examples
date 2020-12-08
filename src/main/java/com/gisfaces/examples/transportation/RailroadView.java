@@ -1,17 +1,38 @@
+/*
+ * The MIT License
+ *
+ * Copyright (c) 2013-2021 Chris Duncan (cduncan@gisfaces.com)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
 package com.gisfaces.examples.transportation;
 
+import com.gisfaces.model.layer.MapImageLayer;
 import java.io.Serializable;
-
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-import com.gisfaces.model.layer.MapImageLayer;
-
 @Named
 @SessionScoped
-public class RailroadView extends ReferenceView implements Serializable
-{
+public class RailroadView extends ReferenceView implements Serializable {
 	private static final long serialVersionUID = -3883136962716915153L;
 
 	private MapImageLayer rail;
@@ -22,8 +43,7 @@ public class RailroadView extends ReferenceView implements Serializable
 	private MapImageLayer mileposts;
 
 	@PostConstruct
-	public void init()
-	{
+	public void init() {
 		super.init();
 
 		// Build the map layers.
@@ -46,63 +66,51 @@ public class RailroadView extends ReferenceView implements Serializable
 		this.getModel().getLayers().add(mileposts);
 	}
 
-	public MapImageLayer getRail()
-	{
+	public MapImageLayer getRail() {
 		return rail;
 	}
 
-	public void setRail(MapImageLayer rail)
-	{
+	public void setRail(MapImageLayer rail) {
 		this.rail = rail;
 	}
 
-	public MapImageLayer getPassenger()
-	{
+	public MapImageLayer getPassenger() {
 		return passenger;
 	}
 
-	public void setPassenger(MapImageLayer passenger)
-	{
+	public void setPassenger(MapImageLayer passenger) {
 		this.passenger = passenger;
 	}
 
-	public MapImageLayer getBridges()
-	{
+	public MapImageLayer getBridges() {
 		return bridges;
 	}
 
-	public void setBridges(MapImageLayer bridges)
-	{
+	public void setBridges(MapImageLayer bridges) {
 		this.bridges = bridges;
 	}
 
-	public MapImageLayer getCrossings()
-	{
+	public MapImageLayer getCrossings() {
 		return crossings;
 	}
 
-	public void setCrossings(MapImageLayer crossings)
-	{
+	public void setCrossings(MapImageLayer crossings) {
 		this.crossings = crossings;
 	}
 
-	public MapImageLayer getSafety()
-	{
+	public MapImageLayer getSafety() {
 		return safety;
 	}
 
-	public void setSafety(MapImageLayer safety)
-	{
+	public void setSafety(MapImageLayer safety) {
 		this.safety = safety;
 	}
 
-	public MapImageLayer getMileposts()
-	{
+	public MapImageLayer getMileposts() {
 		return mileposts;
 	}
 
-	public void setMileposts(MapImageLayer mileposts)
-	{
+	public void setMileposts(MapImageLayer mileposts) {
 		this.mileposts = mileposts;
 	}
 }
