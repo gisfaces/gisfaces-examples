@@ -28,7 +28,25 @@
 						<p:toggleSwitch value="#{railroadView.rail.visible}">
 							<f:ajax render=":mapForm:map1"></f:ajax>
 						</p:toggleSwitch>
-						<h:outputText styleClass="bold" value="Rail Main Line"></h:outputText>
+						<h:outputText styleClass="bold" value="Main Line Rail"></h:outputText>
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<p:toggleSwitch value="#{railroadView.stracnet.visible}">
+							<f:ajax render=":mapForm:map1"></f:ajax>
+						</p:toggleSwitch>
+						<h:outputText styleClass="bold" value="Strategic Network Rail"></h:outputText>
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<p:toggleSwitch value="#{railroadView.ptc.visible}">
+							<f:ajax render=":mapForm:map1"></f:ajax>
+						</p:toggleSwitch>
+						<h:outputText styleClass="bold" value="Positive Train Control Rail"></h:outputText>
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<p:toggleSwitch value="#{railroadView.freight.visible}">
+							<f:ajax render=":mapForm:map1"></f:ajax>
+						</p:toggleSwitch>
+						<h:outputText styleClass="bold" value="Class 1 Rail"></h:outputText>
 					</h:panelGrid>
 					<h:panelGrid columns="2">
 						<p:toggleSwitch value="#{railroadView.passenger.visible}">

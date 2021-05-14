@@ -36,6 +36,9 @@ public class RailroadView extends ReferenceView implements Serializable {
 	private static final long serialVersionUID = -3883136962716915153L;
 
 	private MapImageLayer rail;
+	private MapImageLayer stracnet;
+	private MapImageLayer ptc;
+	private MapImageLayer freight;
 	private MapImageLayer passenger;
 	private MapImageLayer bridges;
 	private MapImageLayer crossings;
@@ -48,17 +51,29 @@ public class RailroadView extends ReferenceView implements Serializable {
 
 		// Build the map layers.
 		rail = new MapImageLayer("rail", "https://fragis.fra.dot.gov/fragis/rest/services/FRA/MainLine/MapServer");
+		stracnet = new MapImageLayer("stracnet", "https://fragis.fra.dot.gov/fragis/rest/services/FRA/STRACNET/MapServer");
+		ptc = new MapImageLayer("ptc", "https://fragis.fra.dot.gov/fragis/rest/services/FRA/PTC/MapServer");
+		freight = new MapImageLayer("freight", "https://fragis.fra.dot.gov/fragis/rest/services/FRA/Class1s/MapServer");
 		passenger = new MapImageLayer("passenger", "https://fragis.fra.dot.gov/fragis/rest/services/FRA/PassengerRail/MapServer");
 		bridges = new MapImageLayer("bridges", "https://fragis.fra.dot.gov/fragis/rest/services/Safety/FRA_Bridges/MapServer");
 		crossings = new MapImageLayer("crossings", "https://fragis.fra.dot.gov/fragis/rest/services/Safety/Safety_Crossings/MapServer");
-		safety = new MapImageLayer("yards", "https://fragis.fra.dot.gov/fragis/rest/services/FRA/FRAGradeXing/MapServer");
+		safety = new MapImageLayer("yards", "https://fragis.fra.dot.gov/fragis/rest/services/FRA/FRAGradeX/MapServer");
 		mileposts = new MapImageLayer("mileposts", "https://fragis.fra.dot.gov/fragis/rest/services/FRA/Mileposts/MapServer");
+
+		// Set visibility off by default.
+		stracnet.setVisible(false);
+		ptc.setVisible(false);
+		freight.setVisible(false);
+		passenger.setVisible(false);
 
 		// Initialize the map view.
 		this.getModel().getViewpoint().setLatitude(41.8);
 		this.getModel().getViewpoint().setLongitude(-87.7);
 		this.getModel().getViewpoint().setZoom(10);
 		this.getModel().getLayers().add(rail);
+		this.getModel().getLayers().add(stracnet);
+		this.getModel().getLayers().add(ptc);
+		this.getModel().getLayers().add(freight);
 		this.getModel().getLayers().add(passenger);
 		this.getModel().getLayers().add(bridges);
 		this.getModel().getLayers().add(crossings);
@@ -72,6 +87,30 @@ public class RailroadView extends ReferenceView implements Serializable {
 
 	public void setRail(MapImageLayer rail) {
 		this.rail = rail;
+	}
+
+	public MapImageLayer getStracnet() {
+		return stracnet;
+	}
+
+	public void setStracnet(MapImageLayer stracnet) {
+		this.stracnet = stracnet;
+	}
+
+	public MapImageLayer getPtc() {
+		return ptc;
+	}
+
+	public void setPtc(MapImageLayer ptc) {
+		this.ptc = ptc;
+	}
+
+	public MapImageLayer getFreight() {
+		return freight;
+	}
+
+	public void setFreight(MapImageLayer freight) {
+		this.freight = freight;
 	}
 
 	public MapImageLayer getPassenger() {
