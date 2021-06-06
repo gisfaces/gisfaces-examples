@@ -45,7 +45,7 @@ public class GeoRssLayerView extends MapView implements Serializable {
 		GeoRSSLayer layer = new GeoRSSLayer();
 		layer.setId("wyoming");
 		layer.setTitle("Wyoming");
-		layer.setUrl("https://esri.box.com/shared/static/ko99d42udctfv8z0ja2j6dz6q5tzbzu4.xml");
+		layer.setUrl("https://arcgis.github.io/arcgis-samples-javascript/sample-data/layers-georss/sample-georss.xml");
 
 		// Initialize the map view.
 		this.getModel().setMapType(MapType.TWO_D);
