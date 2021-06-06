@@ -47,10 +47,10 @@ public class AeronauticalView extends ReferenceView implements Serializable {
 		super.init();
 
 		// Build a map layer.
-		airports = new MapImageLayer("airports", "https://maps.bts.dot.gov/services/rest/services/NTAD/Airports/MapServer");
+		airports = new MapImageLayer("airports", "https://geo.dot.gov/server/rest/services/NTAD/Airports/MapServer");
 
 		// Build a map layer.
-		runways = new MapImageLayer("runways", "https://maps.bts.dot.gov/services/rest/services/NTAD/Runways/MapServer");
+		runways = new MapImageLayer("runways", "https://geo.dot.gov/server/rest/services/NTAD/Runways/MapServer");
 
 		// Some services may require the included proxy to be enabled.
 		this.getModel().getConfiguration().setProxyEnabled(true);

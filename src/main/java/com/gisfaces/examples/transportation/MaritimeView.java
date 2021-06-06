@@ -46,10 +46,10 @@ public class MaritimeView extends ReferenceView implements Serializable {
 		super.init();
 
 		// Build the map layers.
-		waterways = new MapImageLayer("waterways", "https://maps.bts.dot.gov/services/rest/services/NTAD/Navigable_Waterway_Lines/MapServer");
-		ports = new MapImageLayer("ports", "https://maps.bts.dot.gov/services/rest/services/NTAD/Ports/MapServer");
-		locks = new MapImageLayer("locks", "https://maps.bts.dot.gov/services/rest/services/NTAD/Locks/MapServer");
-		dams = new MapImageLayer("dams", "https://maps.bts.dot.gov/services/rest/services/NTAD/Dams/MapServer");
+		waterways = new MapImageLayer("waterways", "https://geo.dot.gov/server/rest/services/NTAD/Navigable_Waterway_Lines/MapServer");
+		ports = new MapImageLayer("ports", "https://geo.dot.gov/server/rest/services/NTAD/Ports/MapServer");
+		locks = new MapImageLayer("locks", "https://geo.dot.gov/server/rest/services/NTAD/Locks/MapServer");
+		dams = new MapImageLayer("dams", "https://geo.dot.gov/server/rest/services/NTAD/Dams/MapServer");
 
 		// Set the map basemap.
 		this.getModel().setBasemap(Basemap.OCEANS);

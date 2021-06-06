@@ -46,12 +46,12 @@ public class MapViewerView extends ReferenceView implements Serializable {
 		super.init();
 
 		// Build a map layer.
-		MapImageLayer airports = new MapImageLayer("airports", "https://maps.bts.dot.gov/services/rest/services/NTAD/Airports/MapServer");
+		MapImageLayer airports = new MapImageLayer("airports", "https://geo.dot.gov/server/rest/services/NTAD/Airports/MapServer");
 		airports.setTitle("Airports");
 		airports.setOpacity(1.0d);
 
 		// Build a map layer.
-		MapImageLayer runways = new MapImageLayer("runways", "https://maps.bts.dot.gov/services/rest/services/NTAD/Runways/MapServer");
+		MapImageLayer runways = new MapImageLayer("runways", "https://geo.dot.gov/server/rest/services/NTAD/Runways/MapServer");
 		runways.setTitle("Runways");
 		runways.setOpacity(1.0d);
 
