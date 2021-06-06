@@ -29,7 +29,6 @@ import com.gisfaces.model.color.Color;
 import com.gisfaces.model.layer.PortalItem;
 import com.gisfaces.model.layer.SceneLayer;
 import com.gisfaces.model.map.Basemap;
-import com.gisfaces.model.map.PopupTemplate;
 import com.gisfaces.model.renderer.SimpleRenderer;
 import com.gisfaces.model.symbol.ColorMaterial;
 import com.gisfaces.model.symbol.FillSymbol3DLayer;
@@ -65,7 +64,6 @@ public class SceneLayerView extends MapView implements Serializable {
 		layer.setId("nybuildings");
 		layer.setTitle("NY Buildings");
 		layer.setPopupEnabled(true);
-		layer.setPopupTemplate(new PopupTemplate("NY Building", "{*}"));
 		layer.setPortalItem(new PortalItem("2e0761b9a4274b8db52c4bf34356911e"));
 		layer.setRenderer(renderer);
 

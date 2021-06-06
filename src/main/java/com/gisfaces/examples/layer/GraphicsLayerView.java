@@ -29,7 +29,6 @@ import com.gisfaces.model.color.Color;
 import com.gisfaces.model.geometry.Point;
 import com.gisfaces.model.graphic.Graphic;
 import com.gisfaces.model.layer.GraphicsLayer;
-import com.gisfaces.model.map.PopupTemplate;
 import com.gisfaces.model.symbol.PictureMarkerSymbol;
 import com.gisfaces.model.symbol.TextSymbol;
 import com.gisfaces.utilities.JSFUtilities;
@@ -159,7 +158,6 @@ public class GraphicsLayerView extends MapView implements Serializable {
 		graphic.setId(tokens[0]);
 		graphic.setGeometry(new Point(Double.parseDouble(tokens[1]), Double.parseDouble(tokens[2])));
 		graphic.setSymbol(symbol);
-		graphic.setPopupTemplate(new PopupTemplate("Data Bouy " + tokens[0]));
 		graphic.setAttributes(this.createAttributes(tokens));
 
 		return graphic;
@@ -177,7 +175,6 @@ public class GraphicsLayerView extends MapView implements Serializable {
 		graphic.setId(tokens[0]);
 		graphic.setGeometry(new Point(Double.parseDouble(tokens[1]), Double.parseDouble(tokens[2])));
 		graphic.setSymbol(symbol);
-		graphic.setPopupTemplate(new PopupTemplate("Data Bouy " + tokens[0]));
 		graphic.setAttributes(this.createAttributes(tokens));
 
 		return graphic;

@@ -28,7 +28,6 @@ import com.gisfaces.examples.map.MapView;
 import com.gisfaces.model.color.Color;
 import com.gisfaces.model.layer.MapImageLayer;
 import com.gisfaces.model.layer.SubLayer;
-import com.gisfaces.model.map.PopupTemplate;
 import com.gisfaces.model.renderer.SimpleRenderer;
 import com.gisfaces.model.symbol.SimpleFillSymbol;
 import java.io.Serializable;
@@ -60,7 +59,6 @@ public class MapImageSubLayerView extends MapView implements Serializable {
 		this.states.setId("3");
 		this.states.setOpacity(0.5d);
 		this.states.setTitle("Census State");
-		this.states.setPopupTemplate(new PopupTemplate("State"));
 		this.states.setDefinitionExpression("STATE_NAME='Florida'");
 		this.states.setRenderer(new SimpleRenderer(new SimpleFillSymbol(new Color(this.stateColor))));
 
@@ -69,7 +67,6 @@ public class MapImageSubLayerView extends MapView implements Serializable {
 		this.counties.setId("2");
 		this.counties.setOpacity(0.5d);
 		this.counties.setTitle("Census County");
-		this.counties.setPopupTemplate(new PopupTemplate("County"));
 		this.counties.setDefinitionExpression("STATE_NAME='Florida' AND NAME LIKE 'M%'");
 		this.counties.setRenderer(new SimpleRenderer(new SimpleFillSymbol(new Color(this.countyColor))));
 

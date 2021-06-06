@@ -27,7 +27,6 @@ package com.gisfaces.examples.layer;
 import com.gisfaces.examples.map.MapView;
 import com.gisfaces.model.color.Color;
 import com.gisfaces.model.layer.GeoJSONLayer;
-import com.gisfaces.model.map.PopupTemplate;
 import com.gisfaces.model.symbol.LabelClass;
 import com.gisfaces.model.symbol.LabelExpressionInfo;
 import com.gisfaces.model.symbol.TextSymbol;
@@ -62,7 +61,6 @@ public class GeoJsonLayerView extends MapView implements Serializable {
 		layer.setTitle("Earthquakes");
 		layer.setCopyright("USGS Earthquakes");
 		layer.setPopupEnabled(true);
-		layer.setPopupTemplate(new PopupTemplate("Earthquake {title}", "{*}"));
 		layer.setUrl("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson");
 		layer.setLabelsVisible(true);
 		layer.setLabelingInfo(new LabelClass[] { label });

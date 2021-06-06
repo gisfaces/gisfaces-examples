@@ -29,7 +29,6 @@ import com.gisfaces.model.color.Color;
 import com.gisfaces.model.layer.StreamLayer;
 import com.gisfaces.model.layer.StreamLayerPurgeOptions;
 import com.gisfaces.model.map.Basemap;
-import com.gisfaces.model.map.PopupTemplate;
 import com.gisfaces.model.symbol.LabelClass;
 import com.gisfaces.model.symbol.LabelExpressionInfo;
 import com.gisfaces.model.symbol.TextSymbol;
@@ -63,7 +62,6 @@ public class StreamLayerView extends MapView implements Serializable {
 		layer.setId("labus");
 		layer.setTitle("LA Bus Stream Layer");
 		layer.setPopupEnabled(true);
-		layer.setPopupTemplate(new PopupTemplate("LA Bus {id} Route {route_id}", "{*}"));
 		layer.setPurgeOptions(new StreamLayerPurgeOptions(1000, 10));
 		layer.setUrl("https://geoeventsample1.esri.com:6443/arcgis/rest/services/LABus/StreamServer");
 		layer.setLabelsVisible(true);
