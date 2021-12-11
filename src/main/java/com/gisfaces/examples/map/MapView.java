@@ -51,7 +51,7 @@ public class MapView implements Serializable {
 	@PostConstruct
 	public void init() {
 		this.model = new MapModel();
-		this.model.setBasemap(Basemap.STREETS);
+		this.model.setBasemap(Basemap.STREETS_VECTOR);
 		this.model.getViewpoint().setLatitude(39.828175);
 		this.model.getViewpoint().setLongitude(-98.5795);
 		this.model.getViewpoint().setZoom(4);
