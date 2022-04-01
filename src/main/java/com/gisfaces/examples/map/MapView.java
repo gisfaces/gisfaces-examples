@@ -24,22 +24,25 @@
 
 package com.gisfaces.examples.map;
 
-import com.gisfaces.event.MapBasemapEvent;
-import com.gisfaces.event.MapClickEvent;
-import com.gisfaces.event.MapExtentEvent;
-import com.gisfaces.event.MapGeoLocationEvent;
-import com.gisfaces.event.MapSelectEvent;
-import com.gisfaces.model.map.Basemap;
-import com.gisfaces.model.map.MapModel;
-import com.gisfaces.utilities.JSFUtilities;
 import java.io.Serializable;
 import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.model.SelectItem;
 import javax.inject.Named;
+
+import com.gisfaces.event.MapBasemapEvent;
+import com.gisfaces.event.MapClickEvent;
+import com.gisfaces.event.MapDimensionEvent;
+import com.gisfaces.event.MapExtentEvent;
+import com.gisfaces.event.MapGeoLocationEvent;
+import com.gisfaces.event.MapSelectEvent;
+import com.gisfaces.model.map.Basemap;
+import com.gisfaces.model.map.MapModel;
+import com.gisfaces.utilities.JSFUtilities;
 
 @Named
 @SessionScoped
@@ -99,6 +102,16 @@ public class MapView implements Serializable {
 		String summary = "Map Select Event";
 		String detail = String.format("Layer ID='%s', SubLayer ID='%s', Graphic ID='%s', Attributes='%s'", e.getLayerId(), e.getSubLayerId(), e.getGraphicId(),
 				e.getAttributesJson());
+
+		System.out.println(String.format("%s: %s", summary, detail));
+		JSFUtilities.addInfoMessage(summary, detail);
+	}
+
+	public void doMapDimensionListener(AjaxBehaviorEvent event) {
+		MapDimensionEvent e = (MapDimensionEvent) event;
+
+		String summary = "Map Dimension Event";
+		String detail = String.format("Dimension='%s'", e.getDimension());
 
 		System.out.println(String.format("%s: %s", summary, detail));
 		JSFUtilities.addInfoMessage(summary, detail);

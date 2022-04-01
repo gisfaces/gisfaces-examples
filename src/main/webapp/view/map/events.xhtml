@@ -31,6 +31,7 @@
 					<f:ajax event="click" listener="#{mapView.doMapClickListener}" render="growl1"></f:ajax>
 					<f:ajax event="extent" listener="#{mapView.doMapExtentListener}" render="growl1"></f:ajax>
 					<f:ajax event="select" listener="#{mapView.doMapSelectListener}" render="growl1"></f:ajax>
+					<f:ajax event="dimension" listener="#{mapView.doMapDimensionListener}" render="growl1"></f:ajax>
 					<f:ajax event="geolocation" listener="#{mapView.doMapGeoLocationListener}" render="growl1"></f:ajax>
 				</gis:map>
 			</pe:layoutPane>

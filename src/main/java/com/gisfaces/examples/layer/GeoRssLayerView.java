@@ -26,7 +26,7 @@ package com.gisfaces.examples.layer;
 
 import com.gisfaces.examples.map.MapView;
 import com.gisfaces.model.layer.GeoRSSLayer;
-import com.gisfaces.model.map.MapType;
+import com.gisfaces.model.map.MapDimension;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -48,7 +48,7 @@ public class GeoRssLayerView extends MapView implements Serializable {
 		layer.setUrl("https://arcgis.github.io/arcgis-samples-javascript/sample-data/layers-georss/sample-georss.xml");
 
 		// Initialize the map view.
-		this.getModel().setMapType(MapType.TWO_D);
+		this.getModel().setMapDimension(MapDimension.TWO_D);
 		this.getModel().getViewpoint().setLatitude(43.138893);
 		this.getModel().getViewpoint().setLongitude(-107.689363);
 		this.getModel().getViewpoint().setZoom(6);
