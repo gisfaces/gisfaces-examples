@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2013-2021 Chris Duncan (cduncan@gisfaces.com)
+ * Copyright (c) 2013-2023 Chris Duncan (cduncan@gisfaces.com)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,16 +24,6 @@
 
 package com.gisfaces.examples.map;
 
-import java.io.Serializable;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.event.ActionEvent;
-import javax.faces.event.AjaxBehaviorEvent;
-import javax.faces.model.SelectItem;
-import javax.inject.Named;
-
 import com.gisfaces.event.MapBasemapEvent;
 import com.gisfaces.event.MapClickEvent;
 import com.gisfaces.event.MapDimensionEvent;
@@ -43,6 +33,14 @@ import com.gisfaces.event.MapSelectEvent;
 import com.gisfaces.model.map.Basemap;
 import com.gisfaces.model.map.MapModel;
 import com.gisfaces.utilities.JSFUtilities;
+import java.io.Serializable;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
+import javax.faces.model.SelectItem;
+import javax.inject.Named;
 
 @Named
 @SessionScoped
