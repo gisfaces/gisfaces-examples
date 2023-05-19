@@ -48,7 +48,7 @@ public class IntegratedMeshLayerView extends MapView implements Serializable {
 		layer.setUrl("https://tiles.arcgis.com/tiles/FQD0rKU8X5sAQfh8/arcgis/rest/services/VRICON_Yosemite_Sample_Integrated_Mesh_scene_layer/SceneServer");
 
 		// Initialize the map view.
-		this.getModel().setBasemap(Basemap.LIGHTGRAY);
+		this.getModel().setBasemap(Basemap.GRAY_VECTOR);
 		this.getModel().getViewpoint().setLatitude(37.729935);
 		this.getModel().getViewpoint().setLongitude(-119.605251);
 		this.getModel().getViewpoint().setZoom(14);

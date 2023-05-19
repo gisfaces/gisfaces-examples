@@ -68,7 +68,7 @@ public class StreamLayerView extends MapView implements Serializable {
 		layer.setLabelingInfo(new LabelClass[] { label });
 
 		// Initialize the map view.
-		this.getModel().setBasemap(Basemap.LIGHTGRAY);
+		this.getModel().setBasemap(Basemap.GRAY_VECTOR);
 		this.getModel().getViewpoint().setLatitude(34.095316);
 		this.getModel().getViewpoint().setLongitude(-118.354697);
 		this.getModel().getViewpoint().setZoom(10);

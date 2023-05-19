@@ -68,7 +68,7 @@ public class SceneLayerView extends MapView implements Serializable {
 		layer.setRenderer(renderer);
 
 		// Initialize the map view.
-		this.getModel().setBasemap(Basemap.DARKGRAY);
+		this.getModel().setBasemap(Basemap.DARK_GRAY_VECTOR);
 		this.getModel().getViewpoint().setLatitude(40.706222);
 		this.getModel().getViewpoint().setLongitude(-74.011483);
 		this.getModel().getViewpoint().setZoom(16);
